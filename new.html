@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <title>Navbar Frontend</title>
+  <!-- Bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+   
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&family=Playfair+Display+SC:wght@400;700;900&display=swap");
+
+/*GLOBAL STYLES HERE */
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  color: rgb(51, 51, 51);
+}
+
+body,
+html {
+  overflow-x: hidden;
+}
+
+p {
+  font-size: 0.8rem;
+  text-align: justify;
+}
+
+.white {
+  color: white;
+}
+
+.play {
+  font-family: "Playfair Display SC", serif;
+}
+
+.monst {
+  font-family: "Montserrat", sans-serif;
+}
+.bg-blue {
+  background-color: #112269;
+  color: white;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+.display-1 {
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* 
+  font-family: "Playfair Display SC", serif;
+ 
+  */
+
+/* GLOBAL STYLE ENDS HERE */
+
+/* HEADER STYLES START HERE */
+header {
+  position: relative;
+  z-index: 100;
+}
+.hamburger {
+  display: none;
+}
+.topsubnavigation {
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  background-color: #112269;
+}
+.topmenucontainer {
+  width: 87vw;
+}
+.topmenu {
+  margin: 0;
+  align-items: center;
+}
+
+.socialico {
+  width: 1.5rem;
+}
+
+.socialico:hover {
+  animation: hovercraft 0.8s forwards;
+}
+.socialico path {
+  fill: white;
+}
+.iconcont {
+  padding: 0;
+}
+.submenu {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+.submenucontainer {
+  align-content: center;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.submenulink a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.563rem;
+  line-height: 14px;
+}
+.mainnav {
+  position: absolute;
+  width: 100%;
+}
+.logo {
+  padding: 1rem;
+}
+.findyourprograms,
+.findyourprogram {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  background-color: transparent;
+  font-size: 0.8rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+.findyourprograms button {
+  border: 1px solid rgb(52, 52, 52);
+  min-width: 100px;
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-top: 1rem;
+}
+.findyourprogram button {
+  border: 1px solid white;
+  min-width: 100px;
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  padding-left: 24px;
+  padding-right: 24px;
+  color: white;
+  margin-top: 1rem;
+}
+.findyourprograms button::before {
+  background-color: #112269;
+}
+
+.mainmenulinks {
+  display: flex;
+  justify-content: space-between;
+}
+.mainmenulinks a,
+.mainmenulink-s a {
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.688rem;
+  line-height: 16px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.mainmenulink-s a {
+  color: rgb(52, 52, 52);
+}
+.mainnavs {
+  display: none;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+.headerDown {
+  display: block;
+  position: fixed;
+  z-index: 101;
+  top: 0vh;
+  background-color: white;
+  width: 100%;
+  animation: slidedown 0.3s forwards;
+}
+.hamburger {
+  display: none;
+}
+.programsdropdown {
+  position: absolute;
+}
+/* Hamburger Styling */
+#hamburger {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+#hamburger .line {
+  fill: none;
+  stroke: white;
+  stroke-width: 6;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+#hamburger .line1 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+#hamburger .line2 {
+  stroke-dasharray: 60 60;
+  stroke-width: 6;
+}
+#hamburger .line3 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+#hamburger.open .line1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+#hamburger.open .line2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+  stroke-width: 6;
+}
+#hamburger.open .line3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+#hamburger {
+  display: none;
+}
+section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+/* .carousel-indicators{
+  position:absolute;
+  bottom: 10 !important;
+} */
+/* Rules for Tablet and mobile */
+@media screen and (max-width: 830px) {
+  .topsubnavigation {
+    display: none;
+  }
+  .topmenucontainer .topmenu {
+    display: none;
+  }
+  .hamburger,
+  .hamburgerb {
+    display: block;
+    background: #112269 !important;
+  }
+  .findyourprogram {
+    display: none;
+  }
+  #findyourprogram {
+    display: none;
+  }
+  .mainmenulinks,
+  .hamburger {
+    flex-direction: column;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+  }
+  .mainmenulinks {
+    display: none;
+  }
+  .submenulink {
+    margin: 10px;
+  }
+  .mainmenulink,
+  .mainmenulink-s {
+    padding: 10px;
+  }
+  .mainmenulink a {
+    color: rgb(52, 52, 52) !important;
+  }
+  .mainmenulink {
+    background-color: white;
+  }
+  .show {
+    display: block;
+  }
+  .hovmen {
+    background-color: white;
+    padding-bottom: 10px;
+  }
+  #hamburger {
+    display: block;
+  }
+  .carousel,
+  .carousel-item img {
+    height: auto !important;
+  }
+  .mainnav {
+    padding-top: 0;
+  }
+  .inbetween {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .accordion-body {
+    overflow-x: scroll !important;
+  }
+}
+
+@keyframes slidedown {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hovercraft {
+  0% {
+    position: relative;
+    bottom: 0px;
+  }
+  100% {
+    position: relative;
+    bottom: 4px;
+  }
+}
+
+@keyframes slidedown {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hovercraft {
+  0% {
+    position: relative;
+    bottom: 0px;
+  }
+  100% {
+    position: relative;
+    bottom: 4px;
+  }
+}
+
+/* HEADER STYLES ENDS HERE */
+  </style>
+</head>
+<body>
+
+<header>
+  <!-- Top Subnavigation Menu -->
+  <nav class="topsubnavigation">
+    <div class="container topmenucontainer">
+      <div class="row topmenu">
+        <div class="col-md-3 socialicons">
+          <div class="row">
+            <div class="col-md iconcont">
+              <a href="#instagram">
+                <!-- Instagram SVG -->
+                <!-- Keep your original SVG here -->
+              </a>
+            </div>
+            <div class="col-md iconcont">
+              <a href="#linkedin">
+                <!-- LinkedIn SVG -->
+              </a>
+            </div>
+            <div class="col-md iconcont">
+              <a href="#facebook">
+                <!-- Facebook SVG -->
+              </a>
+            </div>
+            <div class="col-md iconcont">
+              <a href="#twitter">
+                <!-- Twitter SVG -->
+              </a>
+            </div>
+            <div class="col-md iconcont">
+              <a href="#youtube">
+                <!-- YouTube SVG -->
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <!-- Google Translate Placeholder -->
+          <div style="color:white;">Translate</div>
+        </div>
+        <div class="col-md-6 submenu">
+          <div class="submenucontainer" style="display: flex;">
+            <div class="submenulink"><a href="#feedback">FEEDBACK</a></div>
+            <div class="submenulink"><a href="#careers">CAREERS</a></div>
+            <div class="submenulink"><a href="#alumni">ALUMNI</a></div>
+            <div class="submenulink"><a href="#itservices">IT Services</a></div>
+            <div class="submenulink"><a href="#oric">ORIC</a></div>
+            <div class="submenulink"><a href="#contact">CONTACT</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Navigation -->
+  <nav class="mainnav" id="mainnav">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 logo">
+          <div class="col-md-10">
+            <img width="100%" src="./public/pictures/official/logowhite.png" alt="Logo"/>
+          </div>
+        </div>
+        <div class="col-md-8 mainnavigation">
+          <div class="findyourprogram">
+            <a href="https://jinnah.edu/admissions/">
+              <button class="findyourprogram" id="findyourprogram">Find Your Program</button>
+            </a>
+          </div>
+          <div class="container">
+            <div id="hamburger" class="mainmenulinks hamburger" onclick="this.classList.toggle('open');">
+              <!-- Hamburger Icon -->
+              <svg width="30" height="30" viewBox="0 0 100 100">
+                <path class="line line1" d="M 20,29.000046 H 80.000231 ..."/>
+                <path class="line line2" d="M 20,50 H 80"/>
+                <path class="line line3" d="M 20,70.999954 H 80.000231 ..."/>
+              </svg>
+            </div>
+          </div>
+          <div id="popupmenu" class="mainmenulinks">
+            <div class="mainmenulink"><a href="#">HOME</a></div>
+            <div class="mainmenulink"><a href="#">PROGRAMS</a></div>
+            <div class="mainmenulink"><a href="#">ADMISSIONS</a></div>
+            <div class="mainmenulink"><a href="#">IT Services</a></div>
+            <div class="mainmenulink"><a href="#">JBERJ</a></div>
+            <div class="mainmenulink"><a href="#">NAVTTC</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sticky Main Navigation -->
+  <nav class="mainnavs" id="mainnavs">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 logo">
+          <div class="col-md-10">
+            <img width="100%" src="./public/pictures/official/logowhite.png" alt="Logo"/>
+          </div>
+        </div>
+        <div class="col-md-8 mainnavigations">
+          <div class="findyourprograms">
+            <a href="https://jinnah.edu/admissions/">
+              <button class="findyourprograms" id="findyourprogram">Find Your Program</button>
+            </a>
+          </div>
+          <div class="container">
+            <div id="hamburgerb" class="mainmenulinks hamburgerb" onclick="this.classList.toggle('open');">
+              <!-- Hamburger Icon -->
+              <svg width="30" height="30" viewBox="0 0 100 100">
+                <path class="line line1" d="M 20,29.000046 H 80.000231 ..."/>
+                <path class="line line2" d="M 20,50 H 80"/>
+                <path class="line line3" d="M 20,70.999954 H 80.000231 ..."/>
+              </svg>
+            </div>
+          </div>
+          <div id="popupmenub" class="mainmenulinks hovmen">
+            <div class="mainmenulink-s"><a href="#">HOME</a></div>
+            <div class="mainmenulink-s"><a href="#">PROGRAMS</a></div>
+            <div class="mainmenulink-s"><a href="#">ADMISSIONS</a></div>
+            <div class="mainmenulink-s"><a href="#">IT Services</a></div>
+            <div class="mainmenulink-s"><a href="#">JBERJ</a></div>
+            <div class="mainmenulink-s"><a href="#">NAVTTC</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<a href="https://admissions.maju.edu.pk/login" class="floatingapplynowbutton button button-blue">
+  <button>Apply Now</button>
+</a>
+
+<!-- <script src="script.js"></script> -->
+
+<script>
+    let elementa = document.querySelector("#popupmenu");
+let elementb = document.querySelector("#popupmenub");
+
+let hamburger = document.querySelector("#hamburger");
+let hamburgerb = document.querySelector("#hamburgerb");
+
+hamburger.addEventListener("click", () => {
+  if (elementa.classList.contains("show")) {
+    elementa.classList.remove("show");
+  } else {
+    elementb.classList.remove("show");
+    elementa.classList.add("show");
+  }
+});
+
+hamburgerb.addEventListener("click", () => {
+  if (elementb.classList.contains("show")) {
+    elementb.classList.remove("show");
+  } else {
+    elementa.classList.remove("show");
+    elementb.classList.add("show");
+  }
+});
+
+</script>
+  <!-- Bootstrap JS (for the collapsible menu) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
