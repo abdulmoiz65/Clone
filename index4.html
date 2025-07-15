@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>IE University Clone - Slider Enhanced</title>
   <style>
+     @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&family=Playfair+Display+SC:wght@400;700;900&display=swap");
+
     /* === RESET & BASE === */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body, html {
-      font-family: 'Arial', sans-serif;
+      font-family: 'Playfair Display SC', serif;
       height: 100%;
       scroll-behavior: smooth;
       overflow-x: hidden;
@@ -244,6 +246,49 @@
     </div>
     <div class="scroll-down">Scroll down</div>
   </section>
+
+    <!-- LATEST NEWS SECTION -->
+<section class="news-section">
+  <div class="news-container">
+    <h2>IE UNIVERSITY LATEST NEWS</h2>
+    <div class="news-grid">
+      
+      <!-- Left Featured News -->
+      <div class="news-left">
+        <img src="news1.jpg" alt="News Image 1" />
+        <h3>
+          IE School of Science & Technology and Vienna Insurance Group (VIG) set up IE Insurance and Tech Lab to address challenges for the insurance industry
+        </h3>
+        <p>
+          An Impact Xcelerator research initiative designed to drive innovation in insurance, technology and climate resilience.
+        </p>
+        <span class="date">11/07/2025</span>
+      </div>
+
+      <!-- Right Small News Blocks -->
+      <div class="news-right">
+        <div class="news-card">
+          <img src="news2.jpg" alt="News Image 2" />
+          <div class="news-content">
+            <h4>A new chapter begins for the IE Law School class of 2025</h4>
+            <p>Over 260 students celebrated their graduation at the historic Segovia campus...</p>
+            <span class="date">10/07/2025</span>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <img src="news3.jpg" alt="News Image 3" />
+          <div class="news-content">
+            <h4>IE welcomes dignitaries at the Impact Xcelerator Summit</h4>
+            <p>Leaders across Europe joined IE’s innovation platform focused on climate and digital transformation.</p>
+            <span class="date">09/07/2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <script>
     // Navbar scroll effect
