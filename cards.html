@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IE University News Grid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .news-card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .news-card-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .news-card-desc {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .news-card-date {
+      font-size: 0.95rem;
+      color: #1a237e;
+      font-weight: 600;
+    }
+    @media (max-width: 991.98px) {
+      .news-card-img {
+        height: 160px;
+      }
+    }
+    @media (max-width: 767.98px) {
+      .news-card-img {
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-4">
+    <div class="row g-4">
+      <!-- News Card 1 -->
+      <div class="col-lg-4 col-md-6">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="AI Use Case Awards" class="news-card-img">
+        <div class="news-card-title">IE UNIVERSITY CELEBRATES THE AI USE CASE AWARDS 2025</div>
+        <div class="news-card-desc">
+          The AI Use Case Awards 2025 is a competition in which staff and faculty members participated.
+        </div>
+        <div class="news-card-date">18/07/2025</div>
+      </div>
+      <!-- News Card 2 -->
+      <div class="col-lg-4 col-md-6">
+        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80" alt="RCRC Partnership" class="news-card-img">
+        <div class="news-card-title">RCRC AND IE UNIVERSITY PARTNER TO LAUNCH THE IE CENTER FOR LEADERSHIP AND INNOVATION IN THE MIDDLE EAST, IN RIYADH'S CREATIVE DISTRICT</div>
+        <div class="news-card-desc">
+          The new IE University Center will be a collaborative space for executives, entrepreneurs, and creative professionals to learn, expand their networks, and share ideas.
+        </div>
+        <div class="news-card-date">17/07/2025</div>
+      </div>
+      <!-- News Card 3 -->
+      <div class="col-lg-4 col-md-12">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="GSK Launch" class="news-card-img">
+        <div class="news-card-title">IE UNIVERSITY AND GSK LAUNCH NEXT FRONTIERS IN HEALTH - BIOPHARMA AND AI GATEWAY SPECIALIZATION TO ACCELERATE DRUG DEVELOPMENT</div>
+        <div class="news-card-desc">
+          From left to right: David Barros, Head of Global Health R&D at GSK; Cristina Henríquez de Luna, President of GSK Spain; Ikhlaq Sidhu, Dean and Professor at IE School of Science & Technology; Gonzalo Garland, Executive Vice President of the IE Foundation.
+        </div>
+        <div class="news-card-date">17/07/2025</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

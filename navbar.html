@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IE University Navbar Clone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .ie-navbar {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 500;
+      z-index: 1030;
+    }
+    .ie-navbar .navbar-brand img {
+      height: 38px;
+      width: auto;
+    }
+    .ie-navbar .nav-link {
+      color: #222 !important;
+      font-size: 1rem;
+      margin-right: 1.2rem;
+      transition: color 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .ie-navbar .nav-link:hover,
+    .ie-navbar .nav-link.active {
+      color: #193d92 !important;
+    }
+    .ie-navbar .btn-apply {
+      background: #193d92;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      margin-left: 1rem;
+      transition: background 0.2s;
+      border: none;
+    }
+    .ie-navbar .btn-apply:hover {
+      background: #0d255c;
+      color: #fff;
+    }
+    .navbar-toggler {
+      border: none;
+      outline: none;
+    }
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+    @media (max-width: 991.98px) {
+      .ie-navbar .nav-link {
+        margin-right: 0;
+        padding: 0.7rem 1rem;
+      }
+      .ie-navbar .btn-apply {
+        margin: 1rem 0 0 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top ie-navbar py-2">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <!-- Use the real logo if you have it, or a placeholder -->
+        <img src="https://www.ie.edu/wp-content/themes/ie/assets/images/logos/ie-logo.svg" alt="IE University Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ieNavbar" aria-controls="ieNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="ieNavbar">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Programs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Admissions</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Campus Life</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Research</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">News & Events</a></li>
+        </ul>
+        <a href="#" class="btn btn-apply">Apply</a>
+      </div>
+    </div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
