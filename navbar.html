@@ -2,90 +2,226 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>IE University Navbar Clone</title>
+  <title>IE University Hero Section</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;500&display=swap" rel="stylesheet">
   <style>
-    .ie-navbar {
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    /* Styles here */
+    body {
+      background: #070a1b;
+      color: #fff;
       font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 500;
+    }
+    .ie-navbar {
+      background: transparent;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
       z-index: 1030;
     }
     .ie-navbar .navbar-brand img {
-      height: 38px;
+      height: 48px;
       width: auto;
     }
     .ie-navbar .nav-link {
-      color: #222 !important;
+      color: #fff !important;
       font-size: 1rem;
       margin-right: 1.2rem;
-      transition: color 0.2s;
       letter-spacing: 0.5px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
     .ie-navbar .nav-link:hover,
     .ie-navbar .nav-link.active {
-      color: #193d92 !important;
+      color: #b3c6ff !important;
     }
-    .ie-navbar .btn-apply {
-      background: #193d92;
+    .ie-navbar .btn-program {
+      background: transparent;
       color: #fff;
-      font-weight: 600;
-      border-radius: 2rem;
-      padding: 0.5rem 1.5rem;
+      border: 2px solid #fff;
+      font-weight: 700;
+      border-radius: 0;
+      padding: 0.6rem 2rem;
       font-size: 1rem;
       margin-left: 1rem;
-      transition: background 0.2s;
-      border: none;
+      transition: background 0.2s, color 0.2s;
+      text-transform: uppercase;
     }
-    .ie-navbar .btn-apply:hover {
-      background: #0d255c;
+    .ie-navbar .btn-program:hover {
+      background: #fff;
+      color: #070a1b;
+    }
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #070a1b;
+      overflow: hidden;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin-left: 2rem;
+      margin-top: 2rem;
+    }
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      color: #e0e6f7;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .hero-btn {
+      background: #fff;
+      color: #070a1b;
+      font-weight: 700;
+      border: none;
+      border-radius: 0;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-btn:hover {
+      background: #193d92;
       color: #fff;
     }
-    .navbar-toggler {
+    .hero-slider-controls {
+      position: absolute;
+      left: 0; right: 0; bottom: 2.5rem;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .slider-dots {
+      display: flex;
+      gap: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+    .slider-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.3;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .slider-dot.active {
+      opacity: 1;
+      background: #fff;
+      border: 2px solid #fff;
+    }
+    .slider-pause {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+    .scroll-down {
+      color: #fff;
+      font-size: 1rem;
+      opacity: 0.7;
+      margin-top: 0.5rem;
+      letter-spacing: 1px;
+    }
+    .scroll-down-arrow {
+      font-size: 2rem;
+      color: #fff;
+      opacity: 0.7;
+      margin-top: -0.5rem;
+    }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 4;
+      background: none;
       border: none;
-      outline: none;
+      color: #fff;
+      font-size: 2.5rem;
+      opacity: 0.7;
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
-    .navbar-toggler:focus {
-      box-shadow: none;
+    .slider-arrow:hover {
+      opacity: 1;
     }
+    .slider-arrow.left { left: 1.5rem; }
+    .slider-arrow.right { right: 1.5rem; }
     @media (max-width: 991.98px) {
-      .ie-navbar .nav-link {
-        margin-right: 0;
-        padding: 0.7rem 1rem;
-      }
-      .ie-navbar .btn-apply {
-        margin: 1rem 0 0 0;
-        width: 100%;
-      }
+      .hero-title { font-size: 2rem; }
+      .hero-content { margin-left: 1rem; }
+    }
+    @media (max-width: 767.98px) {
+      .hero-section { min-height: 60vh; }
+      .hero-title { font-size: 1.3rem; }
+      .hero-content { margin-left: 0.5rem; }
+      .ie-navbar .navbar-brand img { height: 36px; }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg sticky-top ie-navbar py-2">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg ie-navbar py-3 position-absolute w-100">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <!-- Use the real logo if you have it, or a placeholder -->
         <img src="https://www.ie.edu/wp-content/themes/ie/assets/images/logos/ie-logo.svg" alt="IE University Logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ieNavbar" aria-controls="ieNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
       </button>
-      <div class="collapse navbar-collapse" id="ieNavbar">
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
+      <div class="collapse navbar-collapse justify-content-center" id="ieNavbar">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">About IE University</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Programs</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Admissions</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Campus Life</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Research</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Faculty & Research</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">IE University Experience</a></li>
           <li class="nav-item"><a class="nav-link" href="#">News & Events</a></li>
         </ul>
-        <a href="#" class="btn btn-apply">Apply</a>
+        <a href="#" class="btn btn-program ms-lg-4 mt-3 mt-lg-0">Find Your Program</a>
       </div>
     </div>
   </nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-6 hero-content">
+          <h1 class="hero-title">GLOBAL ONLINE MBA: #1 IN FINANCIAL TIMES 2024</h1>
+          <p class="hero-desc">
+            We are excited to announce that our Global Online MBA has been ranked #1 by the Financial Times for 2024! This achievement underscores our dedication to providing transformative education. Discover the #NextBestYou at IE Business School.
+          </p>
+          <a href="#" class="hero-btn">FIND OUT MORE</a>
+        </div>
+      </div>
+    </div>
+    <button class="slider-arrow left" aria-label="Previous">&#8249;</button>
+    <button class="slider-arrow right" aria-label="Next">&#8250;</button>
+    <div class="hero-slider-controls">
+      <div class="slider-dots">
+        <div class="slider-dot active"></div>
+        <div class="slider-dot"></div>
+        <div class="slider-dot"></div>
+        <div class="slider-dot"></div>
+        <div class="slider-dot"></div>
+      </div>
+      <div class="slider-pause">&#10073;&#10073;</div>
+      <div class="scroll-down">Scroll down</div>
+      <div class="scroll-down-arrow">&#8595;</div>
+    </div>
+    <!-- Chatbot Icon -->
+    <div style="position: fixed; bottom: 2rem
