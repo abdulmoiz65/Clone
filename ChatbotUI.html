@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IE University - AI Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .chatbot{
+            background: #00328F;
+            /* color: white; */
+            /* padding: 20px; */
+        }
+        .chat-container {
+            background: #fff;
+            border-radius: 0px;
+            box-shadow: 0 0 0 4px #b3d7ff;
+            padding: 0;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        .chat-header {
+            background: #e9f3fb;
+            border-radius: 0;
+            padding: 12px 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .chat-body {
+            padding: 20px 24px 10px 24px;
+        }
+        .chat-body a {
+            color: #0099ff;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .chat-body a:hover {
+            text-decoration: underline;
+        }
+        .chat-footer {
+            padding: 16px 24px 20px 24px;
+            border-radius: 0;
+            background: #fff;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 2px #b3d7ff;
+            border-color: #b3d7ff;
+        }
+        @media (max-width: 576px) {
+            .chat-container {
+                margin: 20px 4px;
+                padding: 0;
+            }
+            .chat-body, .chat-footer {
+                padding: 12px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid chatbot py-4">
+        <h1 class="fw-bold text-white mb-4" style="letter-spacing: 1px;">IE UNIVERSITY - AI CHAT</h1>
+        <div class="chat-container">
+            <div class="chat-header">
+                IE UNIVERSITY CHAT
+            </div>
+            <div class="chat-body">
+                Hi! This is IE University’s GPT AI and it’s here to help you with anything you might need to know about IE University, 
+                <a href="#">its programs</a>, application process, student experience and more. 
+                <a href="#">This chatbot is highly intelligent</a>, so don’t hesitate to ask questions in 
+                <a href="#">any language you like</a>. <a href="#">Here</a> are a few examples to get you started:
+                <ul class="mt-2 mb-2">
+                    <li>What programs do you recommend if I’m interested in...</li>
+                    <li>What are the <a href="#">admissions</a> requirements to join IE University?</li>
+                    <li>Are there any <a href="#">financial aid</a> options at IE University?</li>
+                    <li>What is the campus experience like?</li>
+                </ul>
+                How can I assist you?
+            </div>
+            <div class="chat-footer d-flex align-items-center">
+                <input type="text" class="form-control me-2" placeholder="Write your question here..." />
+                <button class="btn btn-primary fw-bold px-4" type="button">Send</button>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
