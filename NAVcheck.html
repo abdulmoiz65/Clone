@@ -80,6 +80,8 @@
       transition: color 0.3s;
       position: relative;
       padding: 4px 0;
+      padding-bottom: 8px; /* Reserve space for underline */
+      box-sizing: border-box; /* Prevents jump on border */
     }
     .nav-links a:hover,
     .nav-links a.active {
@@ -93,6 +95,7 @@
       width: 60%;
       border-bottom: 2px solid #003580;
       margin-top: 4px;
+      height: 0; /* Prevents jump */
     }
     .nav-item-with-mega {
       position: relative;
@@ -377,6 +380,7 @@
       width: 60%;
       border-bottom: 2px solid #003580;
       margin-top: 4px;
+      height: 0; /* Prevents jump */
     }
     .top-nav.nav-hover .top-button a,
     .top-nav.scrolled .top-button a {
@@ -472,7 +476,7 @@
   <div class="offcanvas offcanvas-end offcanvas-ie" tabindex="-1" id="ieOffcanvas" aria-labelledby="ieOffcanvasLabel">
     <div class="offcanvas-header">
       <div class="logo">
-        <img src="./assets/logo/logofavwhite.png" alt="IE University Logo" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/IE_University_logo.svg" alt="IE University Logo" />
       </div>
       <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -554,16 +558,20 @@
     const submenus = document.querySelectorAll('.offcanvas-ie .submenu');
     mainLinks.forEach(link => {
       link.addEventListener('click', function() {
+        const isOpen = link.classList.contains('open');
         // Close all
         mainLinks.forEach(l => l.classList.remove('open'));
         submenus.forEach(s => s.style.display = 'none');
-        // Open this
-        link.classList.toggle('open');
-        const menu = link.getAttribute('data-menu');
-        const submenu = document.querySelector(`.offcanvas-ie .submenu[data-submenu="${menu}"]`);
-        if (submenu && link.classList.contains('open')) {
-          submenu.style.display = 'block';
+        // If it was not open, open it
+        if (!isOpen) {
+          link.classList.add('open');
+          const menu = link.getAttribute('data-menu');
+          const submenu = document.querySelector(`.offcanvas-ie .submenu[data-submenu="${menu}"]`);
+          if (submenu) {
+            submenu.style.display = 'block';
+          }
         }
+        // If it was open, now it's closed (do nothing)
       });
     });
 
