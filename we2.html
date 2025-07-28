@@ -12,14 +12,12 @@
       background-color: #f5f5f5;
       padding: 40px;
     }
-
     .ie-heading {
       font-size: 28px;
       font-weight: 700;
       margin-bottom: 24px;
       color: #333;
     }
-
     .ie-card {
       position: relative;
       background-size: cover;
@@ -33,12 +31,12 @@
       overflow: hidden;
       transition: transform 0.3s ease;
       cursor: pointer;
+      border-radius: 0;
+      border: none;
     }
-
     .ie-card:hover {
       transform: scale(1.02);
     }
-
     .ie-card::before {
       content: '';
       position: absolute;
@@ -46,193 +44,222 @@
       background: rgba(0, 0, 0, 0.35);
       z-index: 0;
     }
-
     .ie-card h3,
     .ie-card a {
       z-index: 1;
       position: relative;
       margin: 0;
     }
-
     .ie-card h3 {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 700;
       text-transform: uppercase;
     }
-
     .ie-card a {
       color: white;
       text-decoration: none;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: bold;
       letter-spacing: 0.5px;
     }
-
     .ie-card.featured {
       height: 280px;
     }
-
     .expanded-content {
       background-color: #fff;
-      padding: 30px;
+      padding: 0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+      border-radius: 0;
       margin-top: 20px;
+      display: none;
     }
-
+    .expanded-content.active {
+      display: block;
+    }
+    .expanded-content .row {
+      margin: 0;
+    }
+    .expanded-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+      min-height: 250px;
+    }
+    .expanded-content .content-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 30px;
+    }
     .expanded-content h3 {
-      font-size: 22px;
-      font-weight: 700;
+      font-size: 36px;
+      font-weight: 800 !important;
       margin-bottom: 15px;
+      color: #222;
     }
-
     .expanded-content p {
-      font-size: 14px;
+      font-size: 15px;
       color: #333;
+      margin-bottom: 24px;
     }
-
-    .btn-sm {
-      font-size: 12px;
-      font-weight: 600;
-      padding: 6px 12px;
+    .btn-ie {
+      background: #00338d;
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 10px 28px;
+      border-radius: 0;
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-ie svg {
+      width: 16px;
+      height: 16px;
+      fill: #fff;
     }
   </style>
 </head>
 <body>
-
   <div class="container">
     <h2 class="ie-heading">WE ARE IE UNIVERSITY</h2>
-
     <!-- Featured Card -->
     <div class="row mb-2">
       <div class="col-12">
-        <div class="ie-card featured" data-target="purpose-content" style="background-image: url('./assets/maju1.jpg');">
+        <div class="ie-card featured" data-key="purpose" style="background-image: url('./assets/purpose-3d_1.webp');">
           <h3>OUR PURPOSE</h3>
-          <a href="#">READ MORE ></a>
+          <a href="#">READ MORE &gt;</a>
         </div>
       </div>
     </div>
-
-    <!-- PURPOSE CONTENT will show here -->
-    <div class="row mb-4" id="purpose-container">
+    <!-- Purpose Detail (hidden by default) -->
+    <div class="row mb-4" id="purpose-detail-row">
       <div class="col-12">
-        <div class="expanded-content" id="purpose-content" style="display: none;">
-          <div class="row">
+        <div class="expanded-content" id="purpose-detail">
+          <div class="row g-0">
             <div class="col-md-6">
-              <img src="./assets/maju1.jpg" class="img-fluid" alt="Purpose">
+              <img src="./assets/purpose-3d_1.webp" alt="Purpose">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 content-right">
               <h3>OUR PURPOSE</h3>
-              <p>As a transformative educational institution, we empower students to make their mark on the world. We provide them with the skills, knowledge and environment needed to make a difference, and they join a supportive and international community that lasts a lifetime.</p>
-              <a href="#" class="btn btn-primary btn-sm">FIND OUT MORE</a>
+              <p>
+                As a transformative educational institution, we empower students to make their mark on the world. We provide them with the skills, knowledge and environment needed to make a difference, and they join a supportive and international community that lasts a lifetime.
+              </p>
+              <a href="#" class="btn btn-ie" target="_blank">
+                FIND OUT MORE
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Other 4 Cards -->
+    <!-- 4 Cards -->
     <div class="row g-3">
       <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="ie-card" data-target="diversity-content" style="background-image: url('./assets/maju2.jpg');">
+        <div class="ie-card" data-key="diversity" style="background-image: url('./assets/diversity-3d.webp');">
           <h3>DIVERSITY</h3>
-          <a href="#">READ MORE ></a>
+          <a href="#">READ MORE &gt;</a>
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="ie-card" data-target="innovation-content" style="background-image: url('./assets/maju3.jpg');">
+        <div class="ie-card" data-key="innovation" style="background-image: url('./assets/innovation-3d.webp');">
           <h3>INNOVATION</h3>
-          <a href="#">READ MORE ></a>
+          <a href="#">READ MORE &gt;</a>
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="ie-card" data-target="humanities-content" style="background-image: url('./assets/maju4.jpg');">
+        <div class="ie-card" data-key="humanities" style="background-image: url('./assets/humanities-3d.webp');">
           <h3>HUMANITIES</h3>
-          <a href="#">READ MORE ></a>
+          <a href="#">READ MORE &gt;</a>
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="ie-card" data-target="entrepreneurship-content" style="background-image: url('./assets/maju5.jpg');">
+        <div class="ie-card" data-key="entrepreneurship" style="background-image: url('./assets/entrepreneurship-3d.webp');">
           <h3>ENTREPRENEURSHIP</h3>
-          <a href="#">READ MORE ></a>
+          <a href="#">READ MORE &gt;</a>
         </div>
       </div>
     </div>
-
-    <!-- Expandable Section for Other Cards -->
-    <div id="expand-sections" class="mt-4">
-      <div class="expanded-content" id="diversity-content" style="display: none;">
-        <div class="row">
-          <div class="col-md-6">
-            <img src="./assets/maju2.jpg" class="img-fluid" alt="Diversity">
-          </div>
-          <div class="col-md-6">
-            <h3>DIVERSITY</h3>
-            <p>We embrace multiculturalism and inclusivity in our academic community.</p>
-            <a href="#" class="btn btn-primary btn-sm">FIND OUT MORE</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="expanded-content" id="innovation-content" style="display: none;">
-        <div class="row">
-          <div class="col-md-6">
-            <img src="./assets/maju3.jpg" class="img-fluid" alt="Innovation">
-          </div>
-          <div class="col-md-6">
-            <h3>INNOVATION</h3>
-            <p>Our university fosters an entrepreneurial mindset and innovative thinking.</p>
-            <a href="#" class="btn btn-primary btn-sm">FIND OUT MORE</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="expanded-content" id="humanities-content" style="display: none;">
-        <div class="row">
-          <div class="col-md-6">
-            <img src="./assets/maju4.jpg" class="img-fluid" alt="Humanities">
-          </div>
-          <div class="col-md-6">
-            <h3>HUMANITIES</h3>
-            <p>We cultivate critical thinking, ethics, and a deep understanding of society.</p>
-            <a href="#" class="btn btn-primary btn-sm">FIND OUT MORE</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="expanded-content" id="entrepreneurship-content" style="display: none;">
-        <div class="row">
-          <div class="col-md-6">
-            <img src="./assets/maju5.jpg" class="img-fluid" alt="Entrepreneurship">
-          </div>
-          <div class="col-md-6">
-            <h3>ENTREPRENEURSHIP</h3>
-            <p>We equip students with the tools and mindset to start and lead businesses.</p>
-            <a href="#" class="btn btn-primary btn-sm">FIND OUT MORE</a>
+    <!-- Detail Section for 4 Cards (hidden by default) -->
+    <div class="row mb-4" id="other-detail-row">
+      <div class="col-12">
+        <div class="expanded-content" id="other-detail">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img id="detail-img" src="" alt="Detail">
+            </div>
+            <div class="col-md-6 content-right">
+              <h3 id="detail-title"></h3>
+              <p id="detail-desc"></p>
+              <a href="#" class="btn btn-ie" id="detail-link" target="_blank">
+                FIND OUT MORE
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <!-- JavaScript -->
   <script>
+    // Data for each card
+    const details = {
+      diversity: {
+        img: './assets/diversity-3d.webp',
+        title: 'DIVERSITY',
+        desc: 'Curiosity is key to stimulating new and sustainable patterns of thinking. At IE University, we innovate education through sector-leading professors, personalized learning and cutting-edge technology in a way that humanizes learning. Our Liquid Learning educational experience elevates the learning journey, helping students curate their path, every step of the way.',
+        link: '#'
+      },
+      innovation: {
+        img: './assets/innovation-3d.webp',
+        title: 'INNOVATION',
+        desc: 'Curiosity is key to stimulating new and sustainable patterns of thinking. At IE University, we innovate education through sector-leading professors, personalized learning and cutting-edge technology in a way that humanizes learning. Our Liquid Learning educational experience elevates the learning journey, helping students curate their path, every step of the way.',
+        link: '#'
+      },
+      humanities: {
+        img: './assets/humanities-3d.webp',
+        title: 'HUMANITIES',
+        desc: 'Curiosity is key to stimulating new and sustainable patterns of thinking. At IE University, we innovate education through sector-leading professors, personalized learning and cutting-edge technology in a way that humanizes learning. Our Liquid Learning educational experience elevates the learning journey, helping students curate their path, every step of the way.',
+        link: '#'
+      },
+      entrepreneurship: {
+        img: './assets/entrepreneurship-3d.webp',
+        title: 'ENTREPRENEURSHIP',
+         desc: 'Curiosity is key to stimulating new and sustainable patterns of thinking. At IE University, we innovate education through sector-leading professors, personalized learning and cutting-edge technology in a way that humanizes learning. Our Liquid Learning educational experience elevates the learning journey, helping students curate their path, every step of the way.',
+        link: '#'
+      }
+    };
+
+    // Hide both detail sections initially
+    document.getElementById('purpose-detail').style.display = 'none';
+    document.getElementById('other-detail').style.display = 'none';
+
+    // Card click event
     document.querySelectorAll('.ie-card').forEach(card => {
       card.addEventListener('click', function (e) {
         if (e.target.tagName.toLowerCase() === 'a') e.preventDefault();
+        const key = this.getAttribute('data-key');
+        // Hide both detail sections first
+        document.getElementById('purpose-detail').style.display = 'none';
+        document.getElementById('other-detail').style.display = 'none';
 
-        const targetId = this.getAttribute('data-target');
-
-        // Hide all
-        document.querySelectorAll('.expanded-content').forEach(section => {
-          section.style.display = 'none';
-        });
-
-        // Show specific
-        const target = document.getElementById(targetId);
-        if (target) {
-          target.style.display = 'block';
-          target.scrollIntoView({ behavior: 'smooth' });
+        if (key === 'purpose') {
+          document.getElementById('purpose-detail').style.display = 'block';
+          document.getElementById('purpose-detail-row').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (details[key]) {
+          const d = details[key];
+          document.getElementById('detail-img').src = d.img;
+          document.getElementById('detail-title').textContent = d.title;
+          document.getElementById('detail-desc').textContent = d.desc;
+          document.getElementById('detail-link').href = d.link;
+          document.getElementById('other-detail').style.display = 'block';
+          document.getElementById('other-detail-row').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
