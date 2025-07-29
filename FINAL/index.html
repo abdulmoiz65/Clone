@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAJU</title>
+      <!-- Bootstrap & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- PT serif    -->
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- chat bot  -->
+       <div class="container-fluid chatbot py-4">
+        <h1 class="fw-bold text-white mb-4">MAJU - AI CHAT</h1>
+        <div class="chat-container">
+            <div class="chat-header">
+                MAJU CHAT
+            </div>
+            <div class="chat-body">
+                Hi! This is MAJU GPT AI and it’s here to help you with anything you might need to know about MAJU University, 
+                <a href="#">its programs</a>, application process, student experMAJUnce and more. 
+                <a href="#">This chatbot is highly intelligent</a>, so don’t hesitate to ask questions in 
+                <a href="#">any language you like</a>. <a href="#">Here</a> are a few examples to get you started:
+                <ul class="mt-2 mb-2">
+                    <li>What programs do you recommend if I’m interested in...</li>
+                    <li>What are the <a href="#">admissions</a> requirements to join MAJU University?</li>
+                    <li>Are there any <a href="#">financial aid</a> options at MAJU University?</li>
+                    <li>What is the campus experMAJUnce like?</li>
+                </ul>
+                How can I assist you?
+            </div>
+            <div class="chat-footer d-flex align-items-center">
+                <input type="text" class="form-control me-2" placeholder="Write your question here..." />
+                <button class="btn fw-bold px-4" type="button">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Later  -->
+       <div class="container py-4 news">
+        <h2>MAJU LATEST NEWS</h2>
+        <div class="row">
+            <!-- Main News -->
+            <div class="col-lg-8 mb-4">
+                <div class="ratio ratio-16x9 main-news-ratio mb-3">
+                    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80" alt="Main News" class="main-news-img ">
+                </div>
+                <div>
+                    <h5>QTYR25: WHERE YOUNG QUANTUM RESEARCHERS SHAPE THE FUTURE OF TECHNOLOGY</h5>
+                    <p>
+                        Quantum Technologies Workshop connects Spain’s quantum community and showcases IE Sci-Tech’s VR innovation.<br>
+                        Quantum technologies are expected to redefine what’s computationally feasible, enabling unbreakable communication, ultra-precise measurements, and the simulation of the world’s most complex problems. Building the ecosystem requires the exchange of knowledge, collaboration, and direct foundation of the next generation.
+                    </p>
+                    <p class="mb-1">
+                        QTYR25, the Quantum Technologies for Young Researchers workshop, is powered each year by IE School of Science & Technology. The gathering brings together the brightest minds from universities and industry in Spain to tackle quantum computing, quantum information, quantum optics, quantum communication, and quantum imaging.
+                    </p>
+                    <div class="side-news-date">24/07/2023</div>
+                </div>
+            </div>
+            <!-- Side News -->
+            <div class="col-lg-4">
+                <div class="mb-4">
+                    <div class="ratio ratio-16x9 side-news-ratio">
+                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80" alt="Side News 1" class="side-news-img  ">
+                    </div>
+                    <span class="side-news-title" >IE LAW SCHOOL CELEBRATES THE GRADUATION OF OVER 250 MASTER’S STUDENTS</span>
+                    <p class="mb-1">The ceremony, which also included several awards for students and faculty, featured emotive and inspiring moments.</p>
+                    <div class="side-news-date">21/07/2023</div>
+                </div>
+                <div>
+                    <div class="ratio ratio-16x9 side-news-ratio">
+                        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Side News 2" class="side-news-img  ">
+                    </div>
+                    <span class="side-news-title">IE SCHOOL OF ARCHITECTURE AND DESIGN STUDENTS EXPLORE MADRID’S DESIGN CULTURE</span>
+                    <p class="mb-1">Organized by IE School of Architecture and Design and hosted by IED, the program offered students deep immersion into the city’s design culture and heritage.</p>
+                    <div class="side-news-date">18/07/2023</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Cards  -->
+       <div class="container-fluid py-4 news-cards ">
+        <div class="row justify-content-center m-lg-5 m-md-0 ">
+            <!-- News 1 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <img src="../assets/bachmatemathics-students-teacher.webp" alt="Law School" class="news-img">
+                <span>IE LAW SCHOOL LAUNCHES THE GLOBAL LEGAL IMPACT FELLOWSHIP</span>
+                <p>A unique opportunity for future leaders in International Law.</p>
+                <div class="news-date">18/07/2025</div>
+            </div>
+            <!-- News 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <img src="../assets/program.webp" alt="AI Use Case Awards" class="news-img">
+                <span>IE UNIVERSITY CELEBRATES THE AI USE CASE AWARDS 2025</span>
+                <p>The AI Use Case Awards 2025 is a competition in which staff and faculty members participated.</p>
+                <div class="news-date">18/07/2025</div>
+            </div>
+            <!-- News 3 -->
+            <div class="col-lg-4 col-md-12 mb-4">
+                <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80" alt="RCRC Partnership" class="news-img">
+                <span>RCRC AND IE UNIVERSITY PARTNER TO LAUNCH THE IE CENTER FOR LEADERSHIP AND INNOVATION IN THE MIDDLE EAST, IN RIYADH'S CREATIVE DISTRICT</span>
+                <p>The new IE University Center will be a collaborative space for executives, entrepreneurs, and creative professionals to learn, expand their networks, and share ideas.</p>
+                <div class="news-date">17/07/2025</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- sustain  -->
+     <section class="sustainability-section">
+  <div class="container-fluid">
+    <div class="row align-items-stretch">
+      
+      <!-- Left Text Content -->
+      <div class="col-md-7 d-flex align-items-center sustainability-content">
+        <div>
+          <h2>SUSTAINABILITY</h2>
+          <p>As a leading higher-education institution, we’ve thought a lot about how tomorrow’s world will look and what kind of knowledge we must cultivate for our students to thrive in it. We are committed to fostering environmental and ethical stewardship as well as promoting increased awareness and public understanding.</p>
+          <a href="#" class="sustainability-button">
+            DISCOVER MORE ABOUT SUSTAINABILITY
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="col-md-5 sustainability-image p-0">
+        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80" alt="Sustainability Windmills">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- programs  -->
+       <section class="py-3">
+    <div class="container Degree">
+      <div class="text-left mb-5">
+        <h2>DISCOVER OUR PROGRAMS</h2>
+        <p>
+          At IE University, we specialize in training future-forward leaders with a global vision and a passion for innovation.
+          By pushing the boundaries of higher education, our extensive global network—and strategic institutional partnerships—are able to make a lasting impact in their field.
+          Discover the right program for your learning journey.
+        </p>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        <!-- Repeatable Card Component -->
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-3">
+          <a href="#" class="text-decoration-none">
+            <div class="program-card">
+              <div class="img-wrapper">
+                <img src="../assets/program.webp" alt="Bachelor" class="img-fluid" />
+                <span class="overlay-text">Discover</span>
+                <div class="hover-overlay d-flex flex-column align-items-center justify-content-center">
+  <i class="fa-regular fa-eye text-white mb-2"></i>
+  <span class="discover-text">Discover</span>
+</div>
+
+              </div>
+              <div class="Text text-center bg-white">
+                <h6 class="fw-bold text-uppercase text-dark mb-0">Bachelor’s</h6>
+                <div class="underline"></div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-3">
+          <a href="#" class="text-decoration-none">
+            <div class="program-card">
+              <div class="img-wrapper">
+                <img src="../assets/bachmatemathics-students-teacher.webp" alt="Master" class="img-fluid" />
+                <span class="overlay-text">Discover</span>
+                <div class="hover-overlay d-flex flex-column align-items-center justify-content-center">
+  <i class="fa-regular fa-eye text-white mb-2"></i>
+  <span class="discover-text">Discover</span>
+</div>
+              </div>
+              <div class="text-center blue">
+                <h6 class="fw-bold text-uppercase text-white mb-0">Master’s</h6>
+                <div class="underline white-line"></div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-3">
+          <a href="#" class="text-decoration-none">
+            <div class="program-card">
+              <div class="img-wrapper">
+                <img src="../assets/program.webp" alt="Bachelor" class="img-fluid" />
+                <span class="overlay-text">Discover</span>
+                <div class="hover-overlay d-flex flex-column align-items-center justify-content-center">
+  <i class="fa-regular fa-eye text-white mb-2"></i>
+  <span class="discover-text">Discover</span>
+</div>
+              </div>
+              <div class="Text text-center bg-white">
+                <h6 class="fw-bold text-uppercase text-dark mb-0">Doctorate</h6>
+                <div class="underline"></div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-6 col-lg-3">
+          <a href="#" class="text-decoration-none">
+            <div class="program-card">
+              <div class="img-wrapper">
+                <img src="../assets/bachmatemathics-students-teacher.webp" alt="Master" class="img-fluid" />
+                <span class="overlay-text">Discover</span>
+                            <div class="hover-overlay d-flex flex-column align-items-center justify-content-center">
+  <i class="fa-regular fa-eye text-white mb-2"></i>
+  <span class="discover-text">Discover</span>
+</div>
+              </div>
+              <div class="text-center blue">
+                <h6 class="fw-bold text-uppercase text-white mb-0">Associate</h6>
+                <div class="underline white-line"></div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- Admission card  -->
+     
+<section class="py-5 admission-process">
+  <div class="container">
+    
+    <h2 class="text-uppercase mb-3 heading">Admission Process at IE University</h2>
+    <p class="mb-5">
+      Our rigorous admissions process is focused on identifying the best aspects of each individual’s personal, academic, and professional journey while ensuring diverse and unique students join our community. Learn more about admissions at IE University, including who can apply and how we can assist and support you at each stage of the process.
+    </p>
+
+    <div class="row g-4">
+      <!-- Card 1: Admissions -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-img-top-wrapper">
+            <img src="../assets/maju2.jpg" class="card-img-top" alt="Admissions">
+          </div>
+          <div class="card-body">
+            <h6 class="fw-bold text-uppercase">Admissions</h6>
+            <p>Discover the requirements you must meet to apply, the documentation you’ll have to submit, and the general timeline of the application process.</p>
+            <a href="#" class="button"><span>LEARN MORE ABOUT ADMISSIONS</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Financial Aid -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-img-top-wrapper">
+            <img src="../assets/maju3.jpg" class="card-img-top" alt="Financial Aid">
+          </div>
+          <div class="card-body">
+            <h6 class="fw-bold text-uppercase">Financial Aid</h6>
+            <p>We offer a wide range of financial aid options, from awards to scholarships, flexible payment plans, and attractive financing options.</p>
+            <a href="#" class="button"><span>DISCOVER MORE ABOUT FINANCIAL AID</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Student Services -->
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-img-top-wrapper">
+            <img src="../assets/bachmatemathics-students-teacher.webp" class="card-img-top" alt="Student Services">
+          </div>
+          <div class="card-body">
+            <h6 class="fw-bold text-uppercase">Student Services</h6>
+            <p>We’re committed to making your time with us as seamless and stress-free as possible, so you can focus on studying and enjoying the IE experience.</p>
+            <a href="#" class="button"><span>EXPLORE STUDENT SERVICES</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Event Box  -->
+         
+<section class="event-box text-white py-5">
+  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+    <div class="mb-4 mb-md-0">
+      <h2 class="fw-bold mb-2">STAY UP TO DATE WITH OUR EVENTS</h2>
+      <p class="mb-0">We organize over 1,500 events per year, from conferences to master classes, networking, and so much more.</p>
+    </div>
+<a href="#" class="event-button">
+  DISCOVER OUR EVENTS
+  <i class="fas fa-arrow-up-right-from-square"></i>
+</a>
+
+  </div>
+</section>
+
+
+    <!-- inspire boxes  -->
+
+      <div class="container mt-5">
+    <h2 class="ie-heading">WE ARE IE UNIVERSITY</h2>
+    <!-- Featured Card -->
+    <div class="row mb-2">
+      <div class="col-12">
+        <div class="ie-card featured" data-key="purpose" style="background-image: url('../assets/purpose-3d_1.webp');">
+          <h3>OUR PURPOSE</h3>
+          <a href="#">READ MORE &gt;</a>
+        </div>
+      </div>
+    </div>
+    <!-- Purpose Detail (hidden by default) -->
+    <div class="row mb-4" id="purpose-detail-row">
+      <div class="col-12">
+        <div class="expanded-content" id="purpose-detail">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img src="../assets/purpose-3d_1.webp" alt="Purpose">
+            </div>
+            <div class="col-md-6 content-right">
+              <h3>OUR PURPOSE</h3>
+              <p>
+                As a transformative educational institution, we empower students to make their mark on the world. We provide them with the skills, knowledge and environment needed to make a difference, and they join a supportive and international community that lasts a lifetime.
+              </p>
+              <a href="#" class="btn btn-ie" target="_blank">
+                FIND OUT MORE
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 4 Cards -->
+    <div class="row g-3">
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="ie-card" data-key="diversity" style="background-image: url('../assets/diversity-3d.webp');">
+          <h3>DIVERSITY</h3>
+          <a href="#">READ MORE &gt;</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="ie-card" data-key="innovation" style="background-image: url('../assets/innovation-3d.webp');">
+          <h3>INNOVATION</h3>
+          <a href="#">READ MORE &gt;</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="ie-card" data-key="humanities" style="background-image: url('../assets/humanities-3d.webp');">
+          <h3>HUMANITIES</h3>
+          <a href="#">READ MORE &gt;</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="ie-card" data-key="entrepreneurship" style="background-image: url('../assets/entrepreneurship-3d.webp');">
+          <h3>ENTREPRENEURSHIP</h3>
+          <a href="#">READ MORE &gt;</a>
+        </div>
+      </div>
+    </div>
+    <!-- Detail Section for 4 Cards (hidden by default) -->
+    <div class="row mb-4" id="other-detail-row">
+      <div class="col-12">
+        <div class="expanded-content" id="other-detail">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img id="detail-img" src="" alt="Detail">
+            </div>
+            <div class="col-md-6 content-right">
+              <h3 id="detail-title"></h3>
+              <p id="detail-desc"></p>
+              <a href="#" class="btn btn-ie" id="detail-link" target="_blank">
+                FIND OUT MORE
+                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+
+    <!-- LINKs  -->
+        <div style="padding-top: 100px; padding-bottom:100px" class="container-fluid important-links">
+  <div class="container important-links-list">
+    <span class="text-heading important-links-heading">WE RECOMMEND</span>
+    <div class="row">
+      <div  class="col-md-4">
+        <ul>
+          <li><a href="scholarships-link.html">FINANCIAL AID<span><img class="externalLink" src="../assets/externalLinkBlue.png" alt="ExternalLink"></span></a></li>
+          <li><a href="admissions-link.html">ADMISSIONS<span><img class="externalLink" src="../assets/externalLinkBlue.png" alt="ExternalLink"></span></a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul>
+          <li><a href="feestructure-link.html">FEE STRUCTURE<span><img class="externalLink" src="../assets/externalLinkBlue.png" alt="ExternalLink"></span></a></li>
+          <li><a href="oric-link.html">ORIC<span><img class="externalLink" src="../assets/externalLinkBlue.png" alt="ExternalLink"></span></a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul>
+          <li><a href="programs-link.html">PROGRAMS<span><img class="externalLink" src="../assets/externalLinkBlue.png" alt="ExternalLink"></span></a></li>
+          <li><a href="jberj-link.html">JBERJ<span><img class="externalLink" src="../assets/externalLinkBlue.png" alt="ExternalLink"></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>    
+    
+
+    <!-- FOOTER   -->
+
+    
+  <footer class="maju-footer">
+    <div class="container">
+      <!-- Heading -->
+      <div class="mb-4">
+        <span class="text-uppercase heading">MAJU - Inspiring Future Generations</span>
+      </div>
+
+      <!-- Link Columns -->
+    <div class="row footer-links">
+      <div class="col-md-6 col-lg-4">
+        <ul>
+        <li><a href="#">MAJU Business School <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        <li><a href="#">School of Computing <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        <li><a href="#">ORIC <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        <li><a href="#">IT Services <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        <li><a href="#">Library <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        <li><a href="#">Career Development Center <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <ul>
+        <li><a href="#">MAJU University <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        <li><a href="#">Law School <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        <li><a href="#">School of Engineering <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        <li><a href="#">School of Social Sciences <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        <li><a href="#">FYP Portal <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        <li><a href="#">Academy <i class="fas fa-arrow-up-right-from-square external-icon"></i></a></li>
+        </ul>
+      </div>
+    </div>
+
+      <!-- Social Media -->
+    <div class="row mt-4">
+      <div class="col text-center">
+        <h5 class="fw-semibold mb-3">Follow Us</h5>
+        <div class="social-icons">
+        <a href="https://www.facebook.com/majuofficial" aria-label="MAJU on Facebook" title="Facebook" rel="noopener" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/school/majuofficial" aria-label="MAJU on LinkedIn" title="LinkedIn" rel="noopener" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/majuofficial" aria-label="MAJU on Instagram" title="Instagram" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/majuofficial" aria-label="MAJU on YouTube" title="YouTube" rel="noopener" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@majuofficial" aria-label="MAJU on TikTok" title="TikTok" rel="noopener" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://twitter.com/majuofficial" aria-label="MAJU on Twitter" title="Twitter" rel="noopener" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="MAJU Podcast" title="Podcast" rel="noopener" target="_blank"><i class="fas fa-microphone"></i></a>
+        </div>
+      </div>
+    </div>
+
+      <!-- Footer Nav Links -->
+      <div class="row footer-bottom mt-4">
+        <div class="col-12 d-flex flex-wrap justify-content-center footer-nav mb-2">
+           <a href="#" class="text-white text-decoration-none mx-2">Legal Notice</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">Privacy Policy</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">Cookie Policy</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">Security Policy</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">International Offices</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">Communications Team</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">Student Academic Standards</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">Contact</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">MAJU Jobs</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">MAJU Store</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">Donate</a><span class="text-white">|</span>
+      <a href="#" class="text-white text-decoration-none mx-2">Site Map</a>
+        </div>
+
+        
+
+        <!-- Footer Copy and Logo -->
+        <div class="col-12 footer-copy">
+          <span class="mb-3" >&copy; MAJU 2025</span>
+          <div class="footer-logo">
+            <img src="../assets/logo/logowhite.png" alt="MAJU Logo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  
+</body>
+<script src="./script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</html>
