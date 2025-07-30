@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pixel Perfect Slider</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #000;
+    }
+    .hero-slider {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0;
+      z-index: 1;
+      background-size: cover;
+      background-position: center;
+      transition: opacity 0.7s;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1;
+    }
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      margin-left: 6rem;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .slide-content h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .slide-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      color: #eaeaea;
+    }
+    .slide-content button {
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 18px 38px;
+      border-radius: 0;
+      border: none;
+      background: #fff;
+      color: #222;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .slide-content button:hover {
+      background: #222;
+      color: #fff;
+    }
+    /* SVG Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: color 0.2s;
+      user-select: none;
+      outline: none;
+      padding: 0;
+    }
+    .arrow.left { left: 24px; }
+    .arrow.right { right: 24px; }
+    .arrow svg {
+      width: 24px;
+      height: 24px;
+      stroke: #fff;
+      stroke-width: 2.2;
+      fill: none;
+      display: block;
+    }
+    .arrow:hover svg {
+      stroke: #bbb;
+    }
+    /* Dots */
+    .slider-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 80px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 14px;
+      z-index: 20;
+    }
+    .dot {
+      width: 20px;
+      height: 20px;
+      background: rgba(255,255,255,0.22);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border 0.2s;
+      position: relative;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+    .dot.active {
+      background: #fff;
+      border: 1px solid #bbb;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .dot .dot-icon {
+      color: #222;
+      font-size: 0.95rem;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 400;
+    }
+    .dot:not(.active) .dot-icon {
+      display: none;
+    }
+    /* Play/Pause SVG */
+    .dot .dot-icon svg {
+      width: 13px;
+      height: 13px;
+      display: block;
+    }
+    /* Scroll Down */
+    .scroll-down {
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      color: #fff;
+      text-align: center;
+      z-index: 30;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      opacity: 0.95;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .scroll-down svg {
+      display: block;
+      margin: 6px auto 0 auto;
+      width: 18px;
+      height: 18px;
+      stroke: #fff;
+      stroke-width: 2.2;
+      fill: none;
+      animation: bounce 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(10px);}
+    }
+    @media (max-width: 900px) {
+      .slide-content {
+        margin-left: 24px;
+        max-width: 90vw;
+      }
+      .slide-content h1 {
+        font-size: 1.5rem;
+      }
+      .arrow {
+        width: 28px;
+        height: 28px;
+      }
+      .arrow svg {
+        width: 18px;
+        height: 18px;
+      }
+      .slider-dots {
+        bottom: 60px;
+        gap: 8px;
+      }
+      .dot {
+        width: 14px;
+        height: 14px;
+        font-size: 0.7rem;
+      }
+      .dot .dot-icon svg {
+        width: 9px;
+        height: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-slider">
+    <!-- Slides -->
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');">
+      <div class="slide-content">
+        <h1>IEX RESEARCH XCELERATOR</h1>
+        <p>Advancing research for global impact, in collaboration with IE School of Science & Technology.</p>
+        <button>FIND OUT MORE</button>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1500&q=80');">
+      <div class="slide-content">
+        <h1>INNOVATION HUB</h1>
+        <p>Empowering the next generation of innovators and leaders.</p>
+        <button>DISCOVER</button>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1500&q=80');">
+      <div class="slide-content">
+        <h1>GLOBAL IMPACT</h1>
+        <p>Connecting ideas and people for a better tomorrow.</p>
+        <button>EXPLORE</button>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1500&q=80');">
+      <div class="slide-content">
+        <h1>EDUCATION FOR ALL</h1>
+        <p>Making quality education accessible worldwide.</p>
+        <button>JOIN US</button>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=1500&q=80');">
+      <div class="slide-content">
+        <h1>TECHNOLOGY LEADERS</h1>
+        <p>Shaping the future with cutting-edge technology.</p>
+        <button>SIGN UP</button>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1500&q=80');">
+      <div class="slide-content">
+        <h1>RESEARCH PARTNERS</h1>
+        <p>Collaborating for scientific breakthroughs.</p>
+        <button>CONTACT</button>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');">
+      <div class="slide-content">
+        <h1>START YOUR JOURNEY</h1>
+        <p>Begin your path to success with us.</p>
+        <button>GET STARTED</button>
+      </div>
+    </div>
+    <!-- SVG Arrows -->
+    <button class="arrow left" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg>
+    </button>
+    <button class="arrow right" aria-label="Next slide">
+      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+    <!-- Dots (no icon in HTML, JS will inject) -->
+    <div class="slider-dots">
+      <div class="dot" data-slide="0"><span class="dot-icon"></span></div>
+      <div class="dot" data-slide="1"><span class="dot-icon"></span></div>
+      <div class="dot" data-slide="2"><span class="dot-icon"></span></div>
+      <div class="dot" data-slide="3"><span class="dot-icon"></span></div>
+      <div class="dot" data-slide="4"><span class="dot-icon"></span></div>
+      <div class="dot" data-slide="5"><span class="dot-icon"></span></div>
+      <div class="dot" data-slide="6"><span class="dot-icon"></span></div>
+    </div>
+    <!-- Scroll Down -->
+    <div class="scroll-down">
+      <span>Scroll down</span>
+      <svg viewBox="0 0 24 24"><polyline points="6 10 12 16 18 10"/></svg>
+    </div>
+  </div>
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
+    let currentSlide = 0;
+    let autoPlay = true;
+    let autoPlayInterval = null;
+    const AUTO_PLAY_DELAY = 4000;
+
+    // SVG for play and pause
+    const playSVG = `<svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19" fill="#222"/></svg>`;
+    const pauseSVG = `<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" fill="#222"/><rect x="14" y="5" width="4" height="14" fill="#222"/></svg>`;
+
+    // Show slide by index
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+        dots[i].classList.toggle('active', i === index);
+        dots[i].querySelector('.dot-icon').innerHTML = '';
+      });
+      // Add play/pause icon to the active dot
+      if (autoPlay) {
+        dots[index].querySelector('.dot-icon').innerHTML = pauseSVG;
+      } else {
+        dots[index].querySelector('.dot-icon').innerHTML = playSVG;
+      }
+      currentSlide = index;
+    }
+
+    // Next/Prev slide
+    function nextSlide() {
+      let next = (currentSlide + 1) % slides.length;
+      showSlide(next);
+    }
+    function prevSlide() {
+      let prev = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prev);
+    }
+
+    // Dots click
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        showSlide(i);
+        pauseAutoPlay();
+      });
+    });
+
+    // Arrows
+    leftArrow.addEventListener('click', () => {
+      prevSlide();
+      pauseAutoPlay();
+    });
+    rightArrow.addEventListener('click', () => {
+      nextSlide();
+      pauseAutoPlay();
+    });
+
+    // Auto play
+    function playAutoPlay(startFrom = currentSlide) {
+      autoPlay = true;
+      showSlide(startFrom);
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = setInterval(() => {
+        nextSlide();
+      }, AUTO_PLAY_DELAY);
+    }
+    function pauseAutoPlay() {
+      autoPlay = false;
+      clearInterval(autoPlayInterval);
+      showSlide(currentSlide); // update icon
+    }
+
+    // Start autoplay on load
+    playAutoPlay();
+
+    // Allow clicking the icon to toggle play/pause
+    document.querySelector('.slider-dots').addEventListener('click', function(e) {
+      if (e.target.closest('.dot-icon')) {
+        if (autoPlay) {
+          pauseAutoPlay();
+        } else {
+          playAutoPlay(currentSlide);
+        }
+        e.stopPropagation();
+      }
+    });
+  </script>
+</body>
+</html>
