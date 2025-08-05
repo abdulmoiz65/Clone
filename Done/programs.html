@@ -14,7 +14,6 @@
  <style>
     body {
         font-family: 'Montserrat', sans-serif;
-      /* padding: 40px; */
       background-color: #f5f5f5;
     }
 
@@ -33,26 +32,51 @@
       color: RGB(51, 51, 51);
     }
 
-    .program-card {
+   /* Changed .program-card to .degree-card */
+   .degree-card {
       overflow: hidden;
       border: none;
-      transition: transform 0.3s ease;
+      /* Adjusted transition to include transform and box-shadow for smoothness */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       background-color: #fff;
       height: 100%;
+      transform-style: preserve-3d; /* Key for 3D effects */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Initial subtle shadow */
     }
 
-
-    .program-card .img-wrapper {
+    /* Changed .program-card .img-wrapper to .degree-card .img-wrapper */
+    .degree-card .img-wrapper {
       position: relative;
       overflow: hidden;
+      perspective: 1000px; /* Key for 3D effects on children */
     }
 
-    .program-card .img-wrapper img {
+    /* Changed .program-card .img-wrapper img to .degree-card .img-wrapper img */
+    .degree-card .img-wrapper img {
       width: 100%;
-      height: 220px;
+      height: 180px;
       object-fit: cover;
       transition: transform 0.3s ease;
     }
+
+    /* Changed .program-card:hover to .degree-card:hover */
+    .degree-card:hover {
+      transform: rotateX(5deg) translateZ(10px); /* Adjust rotation angle if needed */
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25); /* More prominent shadow on hover */
+    }
+
+    /* Consolidating and changing hover effects from .program-card:hover */
+    .degree-card:hover .img-wrapper img {
+      transform: scale(1.05) translateZ(10px);
+    }
+
+    .degree-card:hover .hover-overlay {
+      opacity: 1;
+      transform: translateZ(10px);
+    }
+
+    /* --- End of 3D hover changes and class renaming for cards --- */
+
 
     .overlay-text {
       background-color: transparent;
@@ -60,6 +84,7 @@
       font-size: 13px;
       font-weight: 500;
       position: absolute;
+      font-style: italic;
       top: 10px;
       right: 10px;
       color: white;
@@ -68,13 +93,11 @@
       transition: opacity 0.3s ease;
     }
 
-    .program-card:hover .overlay-text {
+    /* Changed .program-card:hover .overlay-text to .degree-card:hover .overlay-text */
+    .degree-card:hover .overlay-text {
       opacity: 0;
     }
 
-    .program-card:hover .img-wrapper img {
-      transform: scale(1.05);
-    }
 
     .hover-overlay {
       position: absolute;
@@ -90,56 +113,61 @@
     }
 
     .hover-overlay i {
-      font-size: 2.6rem;
-      font-weight: 300;
-}
-
-.hover-overlay .discover-text {
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-
-    .program-card:hover .hover-overlay {
-      opacity: 1;
+      font-size: 2rem;
+      /* Removed font-weight: 300; to ensure Font Awesome's natural thinness for fa-regular */
     }
 
-    .program-card .Text,
-    .program-card .blue {
-      padding: 20px 10px 90px;
-      /* text-align: center; */
+    .hover-overlay .discover-text {
+      font-size: 15px;
+      font-style: italic;
+      text-transform: capitalize;
+      font-weight: 400;
+      font-family: PT Serif, serif;
+    }
+
+    /* Changed .program-card:hover .hover-overlay to .degree-card:hover .hover-overlay */
+    /* This rule was already consolidated above with the other .degree-card:hover properties */
+
+
+    /* Changed .program-card .Text, .program-card .blue to .degree-card .Text, .degree-card .blue */
+    .degree-card .Text,
+    .degree-card .blue {
+      padding: 25px 0px 140px 0px;
       border-top: 2px solid #000;
     }
 
-    .program-card .Text h6,
-    .program-card .blue h6 {
+    /* Changed .program-card .Text h6, .program-card .blue h6 to .degree-card .Text h6, .degree-card .blue h6 */
+    .degree-card .Text h6,
+    .degree-card .blue h6 {
       font-weight: 800 !important;
       font-size: 15px;
       text-transform: uppercase;
       margin-bottom: 10px;
     }
 
-    .program-card .Text {
+    /* Changed .program-card .Text to .degree-card .Text */
+    .degree-card .Text {
       background-color: #fff;
       color: #000;
     }
 
-    .program-card .blue {
+    /* Changed .program-card .blue to .degree-card .blue */
+    .degree-card .blue {
       background-color: #00328F;
       color: #fff;
       border-top-color: #fff;
     }
     
-    .program-card .underline {
+    /* Changed .program-card .underline to .degree-card .underline */
+    .degree-card .underline {
       width: 40px;
       height: 2px;
       background-color: #000;
       margin: 6px auto 0;
     }
 
-    .program-card .white-line {
+    /* Changed .program-card .white-line to .degree-card .white-line */
+    .degree-card .white-line {
       background-color: #fff;
     }
   </style>
@@ -162,15 +190,16 @@
         <!-- Card 1 -->
         <div class="col-md-6 col-lg-3">
           <a href="#" class="text-decoration-none">
-            <div class="program-card">
+            <!-- Changed program-card to degree-card -->
+            <div class="degree-card">
               <div class="img-wrapper">
-                <img src="./assets/program.webp" alt="Bachelor" class="img-fluid" />
+                <img src="../assets/program.webp" alt="Bachelor" class="img-fluid" />
                 <span class="overlay-text">Discover</span>
                 <div class="hover-overlay d-flex flex-column align-items-center justify-content-center">
-  <i class="fa-regular fa-eye text-white mb-2"></i>
-  <span class="discover-text">Discover</span>
-</div>
-
+                  <!-- The fa-regular fa-eye is the thinnest free Font Awesome option -->
+                  <i class="fa-regular fa-eye text-white mb-2"></i>
+                  <span class="discover-text">Discover</span>
+                </div>
               </div>
               <div class="Text text-center bg-white">
                 <h6 class="fw-bold text-uppercase text-dark mb-0">Bachelor’s</h6>
@@ -183,14 +212,15 @@
         <!-- Card 2 -->
         <div class="col-md-6 col-lg-3">
           <a href="#" class="text-decoration-none">
-            <div class="program-card">
+            <!-- Changed program-card to degree-card -->
+            <div class="degree-card">
               <div class="img-wrapper">
-                <img src="./assets/bachmatemathics-students-teacher.webp" alt="Master" class="img-fluid" />
+                <img src="../assets/bachmatemathics-students-teacher.webp" alt="Master" class="img-fluid" />
                 <span class="overlay-text">Discover</span>
                 <div class="hover-overlay d-flex flex-column align-items-center justify-content-center">
-  <i class="fa-regular fa-eye text-white mb-2"></i>
-  <span class="discover-text">Discover</span>
-</div>
+                  <i class="fa-regular fa-eye text-white mb-2"></i>
+                  <span class="discover-text">Discover</span>
+                </div>
               </div>
               <div class="text-center blue">
                 <h6 class="fw-bold text-uppercase text-white mb-0">Master’s</h6>
@@ -203,14 +233,15 @@
         <!-- Card 3 -->
         <div class="col-md-6 col-lg-3">
           <a href="#" class="text-decoration-none">
-            <div class="program-card">
+            <!-- Changed program-card to degree-card -->
+            <div class="degree-card">
               <div class="img-wrapper">
-                <img src="./assets/program.webp" alt="Bachelor" class="img-fluid" />
+                <img src="../assets/program.webp" alt="Bachelor" class="img-fluid" />
                 <span class="overlay-text">Discover</span>
                 <div class="hover-overlay d-flex flex-column align-items-center justify-content-center">
-  <i class="fa-regular fa-eye text-white mb-2"></i>
-  <span class="discover-text">Discover</span>
-</div>
+                  <i class="fa-regular fa-eye text-white mb-2"></i>
+                  <span class="discover-text">Discover</span>
+                </div>
               </div>
               <div class="Text text-center bg-white">
                 <h6 class="fw-bold text-uppercase text-dark mb-0">Doctorate</h6>
@@ -223,14 +254,15 @@
         <!-- Card 4 -->
         <div class="col-md-6 col-lg-3">
           <a href="#" class="text-decoration-none">
-            <div class="program-card">
+            <!-- Changed program-card to degree-card -->
+            <div class="degree-card">
               <div class="img-wrapper">
-                <img src="./assets/bachmatemathics-students-teacher.webp" alt="Master" class="img-fluid" />
+                <img src="../assets/bachmatemathics-students-teacher.webp" alt="Master" class="img-fluid" />
                 <span class="overlay-text">Discover</span>
-                            <div class="hover-overlay d-flex flex-column align-items-center justify-content-center">
-  <i class="fa-regular fa-eye text-white mb-2"></i>
-  <span class="discover-text">Discover</span>
-</div>
+                <div class="hover-overlay d-flex flex-column align-items-center justify-content-center">
+                  <i class="fa-regular fa-eye text-white mb-2"></i>
+                  <span class="discover-text">Discover</span>
+                </div>
               </div>
               <div class="text-center blue">
                 <h6 class="fw-bold text-uppercase text-white mb-0">Associate</h6>

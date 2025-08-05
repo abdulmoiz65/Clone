@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Success Stories Section</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap for container and fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f5f5f5;
+    }
+    .success-stories-section {
+      padding: 40px 0;
+      background: #f5f5f5;
+    }
+    .stories-grid-wrapper {
+      max-width: 1600px;
+      margin: 0 auto;
+      /* padding: 0 24px; */
+    }
+.parent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 340px); /* Increased height */
+  gap: 0;
+  width: 100%;
+  background: #f5f5f5;
+}
+.story-card {
+  position: relative;
+  overflow: hidden;
+  background: #222;
+  color: #fff;
+  border-radius: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 340px; /* Match grid row height */
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+    .story-card img {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      transition: filter 0.3s;
+    }
+    .story-card .image-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.55);
+      z-index: 2;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .story-card:hover .image-overlay {
+      opacity: 0.15;
+    }
+    .story-card .card-name {
+      position: relative;
+      z-index: 3;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      text-align: center;
+      width: 100%;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+    }
+    .story-card a {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      text-indent: -9999px;
+    }
+    /* Blue overlay for all cards */
+    .story-card .blue-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 70, 180, 0.85);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      z-index: 5;
+      transition: opacity 0.3s;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    .story-card:hover .blue-overlay {
+      opacity: 1;
+    }
+    .story-card:hover .card-name {
+      opacity: 0.2;
+    }
+    .blue-overlay .quote {
+      font-size: 1.1rem;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .blue-overlay .see-story-link {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: underline;
+      letter-spacing: 1px;
+      z-index: 5;
+      text-indent: 0;
+      position: static;
+      transition: color 0.2s;
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+    .blue-overlay .see-story-link:hover {
+      color: #cce6ff;
+      text-decoration: underline;
+    }
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .parent { grid-template-rows: repeat(2, 220px);}
+    }
+    @media (max-width: 900px) {
+      .parent { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(5, 180px);}
+    }
+    @media (max-width: 600px) {
+      .stories-grid-wrapper { padding: 0 6px; }
+      .parent { grid-template-columns: 1fr; grid-template-rows: repeat(10, 160px);}
+    }
+  </style>
+</head>
+<body>
+  <section class="success-stories-section">
+    <div class="container-fluid px-0">
+      <h2 class="mb-4 text-center fw-bold">Success Stories</h2>
+      <div class="stories-grid-wrapper">
+        <div class="parent">
+          <!-- Card 1 -->
+          <div class="story-card div1">
+            <img src="" alt="Joaquín González">
+            <div class="image-overlay"></div>
+            <div class="card-name">JOAQUÍN GONZÁLEZ</div>
+            <div class="blue-overlay">
+              <div class="quote">
+                "IE gave me the confidence to pursue my dreams."
+              </div>
+              <a href="#" class="see-story-link">SEE THE STORY &rsaquo;</a>
+            </div>
+            <a href="#"></a>
+          </div>
+          <!-- Card 2 -->
+          <div class="story-card div2">
+            <img src="" alt="María Baeza">
+            <div class="image-overlay"></div>
+            <div class="card-name">MARÍA BAEZA</div>
+            <div class="blue-overlay">
+              <div class="quote">
+                "The community here is truly inspiring."
+              </div>
+              <a href="#" class="see-story-link">SEE THE STORY &rsaquo;</a>
+            </div>
+            <a href="#"></a>
+          </div>
+          <!-- Card 3 -->
+          <div class="story-card div3">
+            <img src="" alt="Special Story">
+            <div class="image-overlay"></div>
+            <div class="card-name">JILL FIORE</div>
+            <div class="blue-overlay">
+              <div class="quote">
+                "IE University offers it all. Beyond just a master's program, it's a complete experience that you will never forget."
+              </div>
+              <a href="#" class="see-story-link">SEE THE STORY &rsaquo;</a>
+            </div>
+            <a href="#"></a>
+          </div>
+          <!-- Card 4 -->
+          <div class="story-card div4">
+            <img src="" alt="Kyuchul Kim">
+            <div class="image-overlay"></div>
+            <div class="card-name">KYUCHUL (PETER) KIM</div>
+            <div class="blue-overlay">
+              <div class="quote">
+                "The professors challenged me to grow every day."
+              </div>
+              <a href="#" class="see-story-link">SEE THE STORY &rsaquo;</a>
+            </div>
+            <a href="#"></a>
+          </div>
+          <!-- Card 5 -->
+          <div class="story-card div5">
+            <img src="" alt="Rahyun Kim">
+            <div class="image-overlay"></div>
+            <div class="card-name">RAHYUN KIM</div>
+            <div class="blue-overlay">
+              <div class="quote">
+                "A life-changing journey with lifelong friends."
+              </div>
+              <a href="#" class="see-story-link">SEE THE STORY &rsaquo;</a>
+            </div>
+            <a href="#"></a>
+          </div>
+          <!-- Card 6 -->
+          <div class="story-card div6">
+            <img src="" alt="Alex Chen">
+            <div class="image-overlay"></div>
+            <div class="card-name">ALEX CHEN</div>
+            <div class="blue-overlay">
+              <div class="quote">
+                "The diversity at IE broadened my perspective."
+              </div>
+              <a href="#" class="see-story-link">SEE THE STORY &rsaquo;</a>
+            </div>
+            <a href="#"></a>
+          </div>
+          <!-- Card 7 -->
+          <div class="story-card div7">
+            <img src="" alt="Carlos Ramirez">
+            <div class="image-overlay"></div>
+            <div class="card-name">CARLOS RAMIREZ</div>
+            <div class="blue-overlay">
+              <div class="quote">
+                "Every day was a new adventure in learning."
+              </div>
+              <a href="#" class="see-story-link">SEE THE STORY &rsaquo;</a>
+            </div>
+            <a href="#"></a>
+          </div>
+          <!-- Card 8 -->
+          <div class="story-card div8">
+            <img src="" alt="Jill Fiore">
+            <div class="image-overlay"></div>
+            <div class="card-name">JILL FIORE</div>
+            <div class="blue-overlay">
+              <div class="quote">
+                "The support from faculty was incredible."
+              </div>
+              <a href="#" class="see-story-link">SEE THE STORY &rsaquo;</a>
+            </div>
+            <a href="#"></a>
+          </div>
+          <!-- Card 9 -->
+          <div class="story-card div9">
+            <img src="" alt="Emma Watson">
+            <div class="image-overlay"></div>
+            <div class="card-name">EMMA WATSON</div>
+            <div class="blue-overlay">
+              <div class="quote">
+                "I found my passion and my purpose here."
+              </div>
+              <a href="#" class="see-story-link">SEE THE STORY &rsaquo;</a>
+            </div>
+            <a href="#"></a>
+          </div>
+          <!-- Card 10 -->
+          <div class="story-card div10">
+            <img src="" alt="Lisa Brown">
+            <div class="image-overlay"></div>
+            <div class="card-name">LISA BROWN</div>
+            <div class="blue-overlay">
+              <div class="quote">
+                "IE helped me build a global network."
+              </div>
+              <a href="#" class="see-story-link">SEE THE STORY &rsaquo;</a>
+            </div>
+            <a href="#"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
