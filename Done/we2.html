@@ -1,114 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IE University Section</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IE University Section — Production Ready</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Fonts / Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+
+  <meta name="referrer" content="no-referrer" />
+
   <style>
+    :root{
+      --ie-blue: #00338d;
+      --text-dark: #222;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: #f5f5f5;
       padding: 40px;
+      margin: 0;
     }
-    .ie-heading {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 24px;
-      color: #333;
+
+    .maju-heading{
+      font-size: 35px;
+      font-weight: 800;
+      color: rgb(51,51,51);
+      display:block;
+      margin-bottom:1rem;
     }
-    .ie-card {
+
+    /* Card */
+    .maju-card {
       position: relative;
       background-size: cover;
       background-position: center;
-      height: 230px;
+      height: 280px;
       color: white;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 15px;
       overflow: hidden;
-      transition: transform 0.3s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
       cursor: pointer;
       border-radius: 0;
       border: none;
     }
-    .ie-card:hover {
+    .maju-card:hover {
       transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
-    .ie-card::before {
+    .maju-card::before {
       content: '';
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.35);
       z-index: 0;
     }
-    .ie-card h3,
-    .ie-card a {
+    .maju-card h3,
+    .maju-card a {
       z-index: 1;
       position: relative;
       margin: 0;
     }
-    .ie-card h3 {
+    .maju-card h3 {
       font-size: 16px;
       font-weight: 700;
       text-transform: uppercase;
     }
-    .ie-card a {
+
+    
+
+    .maju-card a {
       color: white;
       text-decoration: none;
       font-size: 12px;
-      font-weight: bold;
+      font-weight: 700;
       letter-spacing: 0.5px;
     }
-    .ie-card.featured {
-      height: 280px;
-    }
+
+    /* Inline Expanded content */
     .expanded-content {
-      background-color: #fff;
+      background-color: transparent;
       padding: 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       border-radius: 0;
       margin-top: 20px;
-      display: none;
+      display: none; /* default hidden */
+      position: relative;
     }
     .expanded-content.active {
       display: block;
     }
-    .expanded-content .row {
-      margin: 0;
-    }
-    .expanded-content img {
+    .expanded-content .expanded-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 0;
-      min-height: 250px;
+      min-height: 280px; /* avoids layout shift */
     }
     .expanded-content .content-right {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 40px 30px;
+      padding: 32px;
     }
     .expanded-content h3 {
-      font-size: 36px;
-      font-weight: 800 !important;
-      margin-bottom: 15px;
-      color: #222;
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--text-dark);
     }
     .expanded-content p {
       font-size: 15px;
+      font-family: 'PT Serif', serif;
+      font-weight: 400;
       color: #333;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
+
     .btn-ie {
-      background: #00338d;
+      background: var(--ie-blue);
       color: #fff;
       font-weight: 700;
       font-size: 15px;
-      padding: 10px 28px;
+      padding: 10px 24px;
       border-radius: 0;
       border: none;
       text-transform: uppercase;
@@ -117,152 +139,410 @@
       align-items: center;
       gap: 8px;
     }
-    .btn-ie svg {
-      width: 16px;
-      height: 16px;
-      fill: #fff;
+    .btn-ie svg { width:16px; height:16px; fill:#fff; }
+
+    /* Inline close button */
+    .close-detail {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: #fff;
+      color: var(--ie-blue);
+      border: none;
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.15s, color 0.15s;
     }
+    .close-detail:hover {
+      background: var(--ie-blue);
+      color: #fff;
+    }
+    .modal h3{
+      font-size: 18px;
+      font-weight: 800 !important;
+      
+    }
+    .modal p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555;
+      font-family: PT Serif, serif;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 767.98px) {
+      body { padding: 16px; }
+      .maju-heading { font-size: 22px; margin-bottom: 8px; }
+      .maju-card { height: 220px; }
+      .expanded-content .content-right { padding: 20px; }
+      .expanded-content h3 { font-size: 22px; }
+      .expanded-content .expanded-img { min-height: 200px; }
+      .modal-dialog.modal-lg { max-width: 92%; } /* make modal near full-width on small screens */
+    }
+
+
+    .event-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: left;
+  background: #00328F;
+  color: white;
+  font-weight: 800;
+  padding: 12px 20px;
+  font-size: 11px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: color 0.4s ease;
+  z-index: 0;
+}
+
+.event-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0%;
+  height: 100%;
+  background-color: white; /* Your hover color */
+  transform: translateX(-50%);
+  z-index: -1; /* Push behind text */
+  transition: width 0.4s ease;
+}
+
+.event-button:hover::before {
+  width: 110%; /* Slightly more than 100% to avoid side gaps */
+}
+
+.event-button:hover {
+  color: black;
+}
+
+.event-button i {
+  margin-left: 8px;
+  z-index: 1; /* Keep icon above background */
+  position: relative;
+}
+
   </style>
 </head>
 <body>
   <div class="container">
-    <h2 class="ie-heading">WE ARE IE UNIVERSITY</h2>
+    <span class="maju-heading">WE ARE MAJU</span>
+
     <!-- Featured Card -->
-    <div class="row mb-2">
+    <div class="row mt-3">
       <div class="col-12">
-        <div class="ie-card featured" data-key="purpose" style="background-image: url('./assets/purpose-3d_1.webp');">
+        <div class="maju-card featured" data-key="purpose" style="background-image: url('/assets/purpose-3d_1.webp');" role="button" tabindex="0" aria-pressed="false" aria-label="Open purpose detail">
           <h3>OUR PURPOSE</h3>
-          <a href="#">READ MORE &gt;</a>
+          <a href="#" aria-hidden="true">READ MORE &gt;</a>
         </div>
       </div>
     </div>
-    <!-- Purpose Detail (hidden by default) -->
-    <div class="row mb-4" id="purpose-detail-row">
+
+    <!-- Purpose Inline Expanded -->
+    <div class="row mb-4" id="purpose-detail-row" aria-live="polite">
       <div class="col-12">
-        <div class="expanded-content" id="purpose-detail">
+        <div class="expanded-content" id="inline-purpose">
+          <button class="close-detail" aria-label="Close details">&times;</button>
           <div class="row g-0">
             <div class="col-md-6">
-              <img src="./assets/purpose-3d_1.webp" alt="Purpose">
+              <img class="expanded-img inline-img" id="inline-purpose-img" src="/assets/purpose-3d_1.webp" alt="Purpose image">
             </div>
             <div class="col-md-6 content-right">
-              <h3>OUR PURPOSE</h3>
-              <p>
+              <h3 id="inline-purpose-title">OUR PURPOSE</h3>
+              <p id="inline-purpose-desc">
                 As a transformative educational institution, we empower students to make their mark on the world. We provide them with the skills, knowledge and environment needed to make a difference, and they join a supportive and international community that lasts a lifetime.
               </p>
-              <a href="#" class="btn btn-ie" target="_blank">
+              <!-- <a href="#" class="btn btn-ie" id="inline-purpose-link" target="_blank" rel="noopener noreferrer">
                 FIND OUT MORE
-                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
-              </a>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
+              </a> -->
+
+              <a href="#" class="event-button"  id="inline-purpose-link">
+  FIND OUT MORE
+  <i class="fas fa-arrow-up-right-from-square"></i>
+</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- 4 Cards -->
+
+    <!-- Four cards -->
     <div class="row g-3">
       <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="ie-card" data-key="diversity" style="background-image: url('./assets/diversity-3d.webp');">
+        <div class="maju-card" data-key="diversity" style="background-image: url('/assets/diversity-3d.webp');" role="button" tabindex="0" aria-label="Open Diversity details">
           <h3>DIVERSITY</h3>
-          <a href="#">READ MORE &gt;</a>
+          <a href="#" aria-hidden="true">READ MORE &gt;</a>
         </div>
       </div>
+
       <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="ie-card" data-key="innovation" style="background-image: url('./assets/innovation-3d.webp');">
+        <div class="maju-card" data-key="innovation" style="background-image: url('/assets/innovation-3d.webp');" role="button" tabindex="0" aria-label="Open Innovation details">
           <h3>INNOVATION</h3>
-          <a href="#">READ MORE &gt;</a>
+          <a href="#" aria-hidden="true">READ MORE &gt;</a>
         </div>
       </div>
+
       <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="ie-card" data-key="humanities" style="background-image: url('./assets/humanities-3d.webp');">
+        <div class="maju-card" data-key="humanities" style="background-image: url('/assets/humanities-3d.webp');" role="button" tabindex="0" aria-label="Open Humanities details">
           <h3>HUMANITIES</h3>
-          <a href="#">READ MORE &gt;</a>
+          <a href="#" aria-hidden="true">READ MORE &gt;</a>
         </div>
       </div>
+
       <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="ie-card" data-key="entrepreneurship" style="background-image: url('./assets/entrepreneurship-3d.webp');">
+        <div class="maju-card" data-key="entrepreneurship" style="background-image: url('/assets/entrepreneurship-3d.webp');" role="button" tabindex="0" aria-label="Open Entrepreneurship details">
           <h3>ENTREPRENEURSHIP</h3>
-          <a href="#">READ MORE &gt;</a>
+          <a href="#" aria-hidden="true">READ MORE &gt;</a>
         </div>
       </div>
     </div>
-    <!-- Detail Section for 4 Cards (hidden by default) -->
+
+    <!-- Other Inline Detail -->
     <div class="row mb-4" id="other-detail-row">
       <div class="col-12">
-        <div class="expanded-content" id="other-detail">
+        <div class="expanded-content" id="inline-other">
+          <button class="close-detail" aria-label="Close details">&times;</button>
           <div class="row g-0">
             <div class="col-md-6">
-              <img id="detail-img" src="" alt="Detail">
+              <img class="expanded-img inline-img" id="inline-other-img" src="" alt="Detail image">
             </div>
             <div class="col-md-6 content-right">
-              <h3 id="detail-title"></h3>
-              <p id="detail-desc"></p>
-              <a href="#" class="btn btn-ie" id="detail-link" target="_blank">
+              <h3 id="inline-other-title"></h3>
+              <p id="inline-other-desc"></p>
+              <!-- <a href="#" class="btn btn-ie" id="inline-other-link" class="animated-link" target="_blank" rel="noopener noreferrer">
                 FIND OUT MORE
-                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
-              </a>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
+              </a> -->
+
+              <a href="#" class="event-button" id="inline-other-link" >
+  FIND OUT MORE
+  <i class="fas fa-arrow-up-right-from-square"></i>
+</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- JavaScript -->
+
+  <!-- Mobile Modal (distinct IDs from inline to avoid duplication) -->
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content ">
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn-close m-2" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="row g-0">
+          <div class="col-md-6">
+            <img id="modal-img" src="" alt="Modal detail image" class="img-fluid w-100 h-100" style="object-fit:cover; min-height:200px;">
+          </div>
+          <div class="col-md-6 d-flex flex-column justify-content-center p-4">
+            <h3 id="modal-title" class="fw-bold mb-2"></h3>
+            <p id="modal-desc" class="mb-3"></p>
+            <!-- <a id="modal-link" class="btn btn-ie" href="#" target="_blank" rel="noopener noreferrer">
+              FIND OUT MORE
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
+            </a> -->
+
+
+            <a href="#" id="modal-link" class="event-button" rel="noopener noreferrer">
+  FIND OUT MORE
+  <i class="fas fa-arrow-up-right-from-square"></i>
+</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
-    // Data for each card
-    const details = {
-      diversity: {
-        img: './assets/diversity-3d.webp',
-        title: 'DIVERSITY',
-        desc: 'Curiosity is key to stimulating new and sustainable patterns of thinking. At IE University, we innovate education through sector-leading professors, personalized learning and cutting-edge technology in a way that humanizes learning. Our Liquid Learning educational experience elevates the learning journey, helping students curate their path, every step of the way.',
-        link: '#'
-      },
-      innovation: {
-        img: './assets/innovation-3d.webp',
-        title: 'INNOVATION',
-        desc: 'Curiosity is key to stimulating new and sustainable patterns of thinking. At IE University, we innovate education through sector-leading professors, personalized learning and cutting-edge technology in a way that humanizes learning. Our Liquid Learning educational experience elevates the learning journey, helping students curate their path, every step of the way.',
-        link: '#'
-      },
-      humanities: {
-        img: './assets/humanities-3d.webp',
-        title: 'HUMANITIES',
-        desc: 'Curiosity is key to stimulating new and sustainable patterns of thinking. At IE University, we innovate education through sector-leading professors, personalized learning and cutting-edge technology in a way that humanizes learning. Our Liquid Learning educational experience elevates the learning journey, helping students curate their path, every step of the way.',
-        link: '#'
-      },
-      entrepreneurship: {
-        img: './assets/entrepreneurship-3d.webp',
-        title: 'ENTREPRENEURSHIP',
-         desc: 'Curiosity is key to stimulating new and sustainable patterns of thinking. At IE University, we innovate education through sector-leading professors, personalized learning and cutting-edge technology in a way that humanizes learning. Our Liquid Learning educational experience elevates the learning journey, helping students curate their path, every step of the way.',
-        link: '#'
-      }
-    };
+    (function(){
+      // base path for assets - change if your folder differs
+      const assetBase = '/assets/';
 
-    // Hide both detail sections initially
-    document.getElementById('purpose-detail').style.display = 'none';
-    document.getElementById('other-detail').style.display = 'none';
-
-    // Card click event
-    document.querySelectorAll('.ie-card').forEach(card => {
-      card.addEventListener('click', function (e) {
-        if (e.target.tagName.toLowerCase() === 'a') e.preventDefault();
-        const key = this.getAttribute('data-key');
-        // Hide both detail sections first
-        document.getElementById('purpose-detail').style.display = 'none';
-        document.getElementById('other-detail').style.display = 'none';
-
-        if (key === 'purpose') {
-          document.getElementById('purpose-detail').style.display = 'block';
-          document.getElementById('purpose-detail-row').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else if (details[key]) {
-          const d = details[key];
-          document.getElementById('detail-img').src = d.img;
-          document.getElementById('detail-title').textContent = d.title;
-          document.getElementById('detail-desc').textContent = d.desc;
-          document.getElementById('detail-link').href = d.link;
-          document.getElementById('other-detail').style.display = 'block';
-          document.getElementById('other-detail-row').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Single source of truth for all details (includes purpose)
+      const details = {
+        purpose: {
+          img: assetBase + 'purpose-3d_1.webp',
+          title: 'OUR PURPOSE',
+          desc: 'As a transformative educational institution, we empower students to make their mark on the world. We provide them with the skills, knowledge and environment needed to make a difference, and they join a supportive and international community that lasts a lifetime.',
+          link: '#'
+        },
+        diversity: {
+          img: assetBase + 'diversity-3d.webp',
+          title: 'DIVERSITY',
+          desc: 'A diverse community embraces the many faces of its people. Thanks to our commitment to diversity, including gender, ethnicity, culture, age, physical appearance, experiences and mindsets, we are able to see the world from a more multifaceted perspective, sparking creativity and compassion.',
+          link: '#'
+        },
+        innovation: {
+          img: assetBase + 'innovation-3d.webp',
+          title: 'INNOVATION',
+          desc: 'Curiosity is key to stimulating new and sustainable patterns of thinking. At IE University, we innovate education through sector-leading professors, personalized learning and cutting-edge technology.',
+          link: '#'
+        },
+        humanities: {
+          img: assetBase + 'humanities-3d.webp',
+          title: 'HUMANITIES',
+          desc: 'We place humanities at the heart of education, helping students develop empathy, ethical judgment and a sense of purpose.',
+          link: '#'
+        },
+        entrepreneurship: {
+          img: assetBase + 'entrepreneurship-3d.webp',
+          title: 'ENTREPRENEURSHIP',
+          desc: 'We cultivate entrepreneurial spirit, providing the tools, knowledge and mindset for students to turn ideas into impactful realities.',
+          link: '#'
         }
+      };
+
+      // Helper: mobile detection via matchMedia
+      const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+      // References to inline elements
+      const inlinePurpose = document.getElementById('inline-purpose');
+      const inlineOther  = document.getElementById('inline-other');
+      const inlinePurposeRow = document.getElementById('purpose-detail-row');
+      const inlineOtherRow = document.getElementById('other-detail-row');
+
+      // Modal elements
+      const modalEl = document.getElementById('detailModal');
+      const modalImg = document.getElementById('modal-img');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDesc = document.getElementById('modal-desc');
+      const modalLink = document.getElementById('modal-link');
+      const bootstrapModal = new bootstrap.Modal(modalEl, {});
+
+      // wire up all cards
+      document.querySelectorAll('.maju-card').forEach(card => {
+        // keyboard accessibility: allow Enter/Space activation
+        card.addEventListener('keydown', function(e){
+          if (e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            this.click();
+          }
+        });
+
+        card.addEventListener('click', function (e) {
+          // prevent the anchor default navigate if clicked
+          if (e.target.tagName.toLowerCase() === 'a') e.preventDefault();
+
+          const key = this.getAttribute('data-key');
+          if (!key || !details[key]) return;
+
+          const data = details[key];
+
+          if (isMobile()) {
+            // populate modal & show
+            modalImg.src = data.img;
+            modalImg.alt = data.title + ' image';
+            modalTitle.textContent = data.title;
+            modalDesc.textContent = data.desc;
+            modalLink.href = data.link;
+            modalLink.setAttribute('rel', 'noopener noreferrer');
+            bootstrapModal.show();
+          } else {
+            // hide both inline details first
+            inlinePurpose.classList.remove('active');
+            inlineOther.classList.remove('active');
+
+            // show correct inline panel
+            if (key === 'purpose') {
+              // populate inline purpose (keeps initial markup accessible if JS disabled)
+              const imgEl = document.getElementById('inline-purpose-img');
+              const titleEl = document.getElementById('inline-purpose-title');
+              const descEl = document.getElementById('inline-purpose-desc');
+              const linkEl = document.getElementById('inline-purpose-link');
+
+              imgEl.src = data.img;
+              imgEl.alt = data.title + ' image';
+              titleEl.textContent = data.title;
+              descEl.textContent = data.desc;
+              linkEl.href = data.link;
+              linkEl.setAttribute('rel', 'noopener noreferrer');
+
+              inlinePurpose.classList.add('active');
+
+              // scroll into view safely
+              requestAnimationFrame(() => {
+                inlinePurposeRow.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              });
+            } else {
+              // populate other inline
+              const imgEl = document.getElementById('inline-other-img');
+              const titleEl = document.getElementById('inline-other-title');
+              const descEl = document.getElementById('inline-other-desc');
+              const linkEl = document.getElementById('inline-other-link');
+
+              imgEl.src = data.img;
+              imgEl.alt = data.title + ' image';
+              titleEl.textContent = data.title;
+              descEl.textContent = data.desc;
+              linkEl.href = data.link;
+              linkEl.setAttribute('rel', 'noopener noreferrer');
+
+              inlineOther.classList.add('active');
+
+              requestAnimationFrame(() => {
+                inlineOtherRow.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              });
+            }
+          }
+        });
       });
-    });
+
+      // Inline close buttons: remove active class
+      document.querySelectorAll('.expanded-content .close-detail').forEach(btn => {
+        btn.addEventListener('click', function(e){
+          e.stopPropagation();
+          const expanded = this.closest('.expanded-content');
+          if (expanded) expanded.classList.remove('active');
+        });
+      });
+
+      // When modal is hidden, clear image src to reduce memory usage
+      modalEl.addEventListener('hidden.bs.modal', function(){
+        modalImg.src = '';
+        modalTitle.textContent = '';
+        modalDesc.textContent = '';
+        modalLink.href = '#';
+      });
+
+      // Defensive: if JS disabled, inline content is visible by default. We hide it when JS runs for default experience.
+      // Hide inline panels at boot (we prefer to control via `.active`)
+      inlinePurpose.classList.remove('active');
+      inlineOther.classList.remove('active');
+
+      // Optional: update behavior on resize (if user resizes device)
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          // if modal is open and user resizes to desktop, close modal
+          if (!isMobile() && document.querySelector('.modal.show')) {
+            bootstrapModal.hide();
+          }
+          // hide inline panels to maintain consistent state if switching breakpoint
+          inlinePurpose.classList.remove('active');
+          inlineOther.classList.remove('active');
+        }, 150);
+      });
+
+    })();
   </script>
 </body>
 </html>

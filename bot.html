@@ -1,238 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Chatbot</title>
-    <!-- Bootstrap CSS for styling and responsiveness -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Custom CSS for chat window and messages */
-        .chat-window {
-            height: 400px; /* Fixed height for chat area */
-            overflow-y: auto; /* Scrollbar for long conversations */
-            border: 1px solid #ccc; /* Light border for chat window */
-            padding: 10px; /* Padding inside chat window */
-            background-color: #f8f9fa; /* Light background for better readability */
-            display: flex;
-            flex-direction: column;
-        }
-        .message-container {
-            margin-bottom: 10px; /* Space between messages */
-        }
-        .bot-message {
-            background-color: #e9ecef; /* Light gray for bot messages */
-            color: #000; /* Black text for readability */
-            padding: 10px; /* Padding inside message bubble */
-            border-radius: 10px; /* Rounded corners for bubble effect */
-            max-width: 80%; /* Limit width for better layout */
-            margin-left: 0; /* Align bot messages to the left */
-        }
-        .user-message {
-            background-color: #007bff; /* Blue for user messages */
-            color: #fff; /* White text for contrast */
-            padding: 10px; /* Padding inside message bubble */
-            border-radius: 10px; /* Rounded corners for bubble effect */
-            max-width: 80%; /* Limit width for better layout */
-            margin-right: 0; /* Align user messages to the right */
-            margin-left: auto; /* Push to the right */
-        }
-        .typing-indicator {
-            font-style: italic;
-            color: #6c757d; /* Gray color for typing indicator */
-            margin-left: 10px; /* Align with bot messages */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IE University — Mockup</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Reset & Base Styles */
+body, h1, h3, p, ul, li, a { margin: 0; padding: 0; }
+body { font-family: sans-serif; line-height: 1.4; color: #333; }
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  background: #f8f9fa;
+}
+header .logo { font-weight: bold; font-size: 1.5em; }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+}
+.language-toggle { margin-left: 1em; font-size: 0.9em; }
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 4em 1em;
+  background: #e9ecef;
+}
+.hero h1 { font-size: 2em; margin-bottom: 0.5em; }
+.cta-button {
+  display: inline-block;
+  padding: 0.8em 1.5em;
+  background: #0056b3;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.3em;
+}
+
+/* Features Grid */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1em;
+  padding: 2em 1em;
+}
+.feature {
+  background: #dee2e6;
+  padding: 1em;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Programs Section */
+.programs {
+  display: flex;
+  justify-content: space-around;
+  background: #f1f3f5;
+  padding: 2em 1em;
+}
+.programs div {
+  max-width: 200px;
+  text-align: center;
+}
+
+/* Campus Section */
+.campus {
+  display: flex;
+  justify-content: space-around;
+  padding: 2em 1em;
+}
+.campus div {
+  max-width: 200px;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  background: #f8f9fa;
+  padding: 2em 1em;
+  text-align: center;
+}
+footer ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+footer .social { font-size: 0.9em; color: #666; }
+
+  </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2 class="text-center">University Chatbot</h2>
-        <p class="text-center">Ask me anything about the university—I'll try to help like a smart assistant!</p>
-        
-        <!-- Chat window to display messages -->
-        <div class="chat-window" id="chat-window">
-            <!-- Initial welcome message will be added by JavaScript -->
-        </div>
-        
-        <!-- Input area for user messages -->
-        <div class="input-group mt-3">
-            <input type="text" id="user-input" class="form-control" placeholder="Type your message and press Enter or click Send...">
-            <button class="btn btn-primary" id="send-button">Send</button>
-        </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">IE University</div>
+    <nav>
+      <ul>
+        <li><a href="#">Programs</a></li>
+        <li><a href="#">Admissions</a></li>
+        <li><a href="#">Who We Are</a></li>
+        <li><a href="#">News & Events</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="language-toggle">English | Español</div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>A New Era of AI-Driven Innovation at IE University</h1>
+    <a href="#" class="cta-button">Think Big, Create Bigger</a>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature">Purpose</div>
+    <div class="feature">Diversity</div>
+    <div class="feature">Innovation</div>
+    <div class="feature">Humanities</div>
+    <div class="feature">Entrepreneurship</div>
+    <div class="feature">Sustainability</div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="programs">
+    <div><h3>Admissions</h3><p>Info about how to apply</p></div>
+    <div><h3>Financial Aid</h3><p>Scholarships & funding options</p></div>
+    <div><h3>Student Services</h3><p>Supporting your journey</p></div>
+  </section>
+
+  <!-- Campus Section -->
+  <section class="campus">
+    <div><h3>Madrid</h3><p>City life description</p></div>
+    <div><h3>Segovia</h3><p>Historic charm description</p></div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <ul>
+      <li><a href="#">Financial Aid</a></li>
+      <li><a href="#">IE Store</a></li>
+      <li><a href="#">Rankings</a></li>
+      <li><a href="#">Student Services</a></li>
+    </ul>
+    <div class="social">
+      <!-- Social media icon placeholders -->
+      <span>Instagram</span> • <span>LinkedIn</span> • <span>Facebook</span>
     </div>
+  </footer>
 
-    <!-- JavaScript for chatbot logic -->
-    <script>
-        // Get DOM elements
-        const chatWindow = document.getElementById('chat-window');
-        const userInput = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
-
-        // Predefined keywords and responses for university-related queries
-        const responses = {
-            admissions: ["admissions", "admission process", "apply", "enrollment"],
-            courses: ["courses", "programs", "majors", "subjects"],
-            fees: ["fees", "tuition", "cost", "payment"],
-            events: ["events", "workshops", "seminars", "calendar"],
-            contact: ["contact", "email", "phone", "help desk"],
-            help: ["help", "assist", "what can you do"]
-        };
-
-        // More natural responses mapped to keywords
-        const responseMessages = {
-            admissions: "You can apply for admissions online via our website. Visit the admissions page for details, deadlines, and requirements. Do you have a specific question about it?",
-            courses: "We offer courses in fields like Engineering, Arts, Science, and Business. Check our course catalog online. Which field are you interested in?",
-            fees: "Tuition fees vary by program and can be found on our fees page. Scholarships and payment plans are available—would you like more details?",
-            events: "Upcoming events include workshops, seminars, and sports. Visit the events calendar on our portal. Is there a specific event you're curious about?",
-            contact: "For queries, email us at info@university.edu or call +123-456-7890. How else can I assist?",
-            help: "I'm here to help with university-related questions! Try asking about admissions, courses, fees, or events. What would you like to know?",
-            default: "I'm not entirely sure about that. Could you clarify or ask about something like admissions, courses, fees, or events?"
-        };
-
-        // Variable to store context (e.g., last topic discussed)
-        let lastTopic = null;
-
-        // Function to add a message to the chat window
-        function addMessage(sender, message) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message-container');
-
-            const bubbleElement = document.createElement('div');
-            bubbleElement.textContent = message;
-
-            if (sender === 'bot') {
-                bubbleElement.classList.add('bot-message');
-            } else {
-                bubbleElement.classList.add('user-message');
-            }
-
-            messageElement.appendChild(bubbleElement);
-            chatWindow.appendChild(messageElement);
-            chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to bottom
-        }
-
-        // Function to show typing indicator
-        function showTypingIndicator() {
-            const typingElement = document.createElement('div');
-            typingElement.classList.add('message-container', 'typing-indicator');
-            typingElement.textContent = "Bot is typing...";
-            chatWindow.appendChild(typingElement);
-            chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to bottom
-            return typingElement; // Return for later removal
-        }
-
-        // Function to remove typing indicator
-        function removeTypingIndicator(element) {
-            if (element && element.parentNode) {
-                element.parentNode.removeChild(element);
-            }
-        }
-
-        // Function to handle bot response based on user input with better matching
-        function getBotResponse(userMessage) {
-            const lowerCaseMessage = userMessage.trim().toLowerCase();
-
-            // Check for keywords in the message (more flexible matching)
-            for (const topic in responses) {
-                if (responses[topic].some(keyword => lowerCaseMessage.includes(keyword))) {
-                    lastTopic = topic; // Set context for follow-up
-                    return responseMessages[topic];
-                }
-            }
-
-            // If no match, use context from last topic or default response
-            if (lastTopic) {
-                return `Since we were talking about ${lastTopic}, did you mean something related? Otherwise, ${responseMessages.default}`;
-            } else {
-                return responseMessages.default;
-            }
-        }
-
-        // Add initial welcome message from bot
-        addMessage('bot', "Hello! I'm the University Chatbot, here to help with your university queries. Ask me anything about admissions, courses, fees, or more!");
-
-        // Event listener for send button
-        sendButton.addEventListener('click', function() {
-            const userMessageText = userInput.value;
-            if (userMessageText.trim() !== '') {
-                // Add user message
-                addMessage('user', userMessageText);
-                
-                // Clear input field
-                userInput.value = '';
-                
-                // Show typing indicator
-                const typingElement = showTypingIndicator();
-                
-                // Simulate a delay for "thinking" (like ChatGPT)
-                setTimeout(() => {
-                    removeTypingIndicator(typingElement); // Remove typing indicator
-                    const botResponse = getBotResponse(userMessageText);
-                    addMessage('bot', botResponse); // Add bot response
-                }, 1000); // 1-second delay for realism
-            }
-        });
-
-        // Event listener for Enter key in input field
-        userInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                sendButton.click(); // Simulate click on send button
-            }
-        });
-    </script>
 </body>
 </html>
-
-### How This is Better:
-- **Flexible Matching**: Now, the bot can understand phrases like "how to apply" or "course details" by checking for keywords, making it feel more conversational.
-- **Context Awareness**: It remembers the last topic (e.g., if you ask about admissions, a follow-up question might reference it).
-- **Typing Indicator**: Adds a "Bot is typing..." animation to mimic ChatGPT's response delay, improving user experience.
-- **No External Dependencies**: Still uses only HTML, CSS, JS, and Bootstrap, so it works offline.
-
-### Testing It:
-1. Save the code as an HTML file.
-2. Open it in a browser.
-3. Try queries like:
-   - "Tell me about admissions" → Should respond with admissions info.
-   - "What about fees?" → Should handle it based on keyword matching.
-   - "I'm not sure, help me" → Should use the help response.
-   - Something unrelated, like "weather" → Should fall back to a default response with context if available.
-
-### Still Not Like ChatGPT?
-ChatGPT uses advanced AI to understand context, generate creative responses, and handle complex queries. This version is an improvement but remains rule-based. To make it truly AI-like:
-
-1. **Integrate an AI API**: Use OpenAI's API (or a similar service like Hugging Face). Here's a quick guide to add it:
-   - Sign up for an API key from OpenAI (openai.com).
-   - Modify the JavaScript to send requests to the API. Example update to `getBotResponse`:
-     ```javascript
-     async function getBotResponse(userMessage) {
-         try {
-             const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                 method: 'POST',
-                 headers: {
-                     'Content-Type': 'application/json',
-                     'Authorization': 'Bearer YOUR_API_KEY' // Replace with your API key
-                 },
-                 body: JSON.stringify({
-                     model: 'gpt-3.5-turbo',
-                     messages: [{ role: 'user', content: userMessage }]
-                 })
-             });
-             const data = await response.json();
-             return data.choices[0].message.content; // Get the AI-generated response
-         } catch (error) {
-             return "Sorry, I had trouble connecting to the AI service. Please try again later.";
-         }
-     }
-     ```
-     - In the send button event, make the bot response async:
-       ```javascript
-       setTimeout(async () => {
-           removeTypingIndicator(typingElement);
-           const botResponse = await getBotResponse(userMessageText); // Await the async function
-           addMessage('bot', botResponse);
-       }, 1000);
-       ```
-     - **Important**: Never expose your API key in client-side code for security reasons. Use a backend server (e.g., Node.js) to handle API calls.
-
-2. **Why This is Better for Now**: This enhanced version is simple, fast, and works within your specified tech stack. If you want to proceed with API integration or need more features, let me know—I can help refine it further!
