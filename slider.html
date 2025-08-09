@@ -156,14 +156,15 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
     .dot .dot-icon {
-      color: #222;
-      font-size: 0.95rem;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 400;
-    }
+  color: #222;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  pointer-events: auto;  /* enable clicks */
+  cursor: pointer;       /* UX: indicate clickability */
+}
     .dot:not(.active) .dot-icon {
       display: none;
     }
@@ -360,17 +361,18 @@ dots.forEach((dot, i) => {
     if (e.target.closest('.dot-icon')) return;
     showSlide(i);
     pauseAutoPlay();
+    // playAutoPlay();
   });
 });
 
 // Arrows
 leftArrow.addEventListener('click', () => {
   prevSlide();
-  pauseAutoPlay();
+  // pauseAutoPlay();
 });
 rightArrow.addEventListener('click', () => {
   nextSlide();
-  pauseAutoPlay();
+  // pauseAutoPlay(); 
 });
 
 // Auto play
