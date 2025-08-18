@@ -9,138 +9,242 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Swiper -->
   <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
+  <!-- Font Awesome (for the arrow icon) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
   <style>
     :root {
-      --tile-radius: 10px;
-      --overlay-blue: rgba(12, 54, 120, 0.85);
+      --tile-radius: 0px;
+      --overlay-blue: rgba(12, 54, 120, 0.92);
+      --brand-blue: #0d3b8e;
     }
-
-    #success-stories-section { scroll-margin-top: 90px; }
 
     /* GRID (desktop ≥1200px) */
     .person-card {
-      display: block; position: relative; overflow: hidden;
+      display: block;
+      position: relative;
+      overflow: hidden;
       border-radius: var(--tile-radius);
-      aspect-ratio: 16/10; background: #e9ecef; text-decoration: none;
+      aspect-ratio: 12/18; /* taller tiles */
+      background: #e9ecef;
+      text-decoration: none;
+      cursor: pointer;
     }
-    .person-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease, filter .35s ease; filter: brightness(.9); }
-    .person-card:hover img { transform: scale(1.03); filter: brightness(1); }
-    .name-overlay {
-      position: absolute; left:0; right:0; bottom:0; padding:12px 14px;
-      color:#fff; font-weight:800; text-transform:uppercase; font-size:.92rem; letter-spacing:.4px;
-      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.45) 50%, rgba(0,0,0,.75) 100%);
+    .person-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .35s ease, filter .35s ease;
+      filter: brightness(.9);
+    }
+    .person-card:hover img,
+    .person-card:focus-within img {
+      transform: scale(1.02);
+      filter: brightness(.7);
     }
 
-    /* SLIDER PANELS (mobile/tablet <1200px) */
+    .name-overlay {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 12px 14px; color: #fff; font-weight: 800; text-transform: uppercase;
+      font-size: .92rem; letter-spacing: .4px;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.45) 50%, rgba(0,0,0,.75) 100%);
+      transition: opacity .2s ease; z-index: 1;
+    }
+
+    .hover-layer {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: center; text-align: left;
+      gap: 16px; padding: 26px; color: #fff; background: var(--overlay-blue);
+      opacity: 0; transform: scale(.98);
+      transition: opacity .25s ease, transform .25s ease; z-index: 2;
+    }
+    .person-card:hover .hover-layer,
+    .person-card:focus-within .hover-layer { opacity: 1; transform: scale(1); }
+    .person-card:hover .name-overlay,
+    .person-card:focus-within .name-overlay { opacity: 0; }
+
+    .hover-layer blockquote {
+      margin: 0; font-size: .98rem; line-height: 1.65; font-weight: 600; max-width: 90%;
+      text-shadow: 0 1px 2px rgba(0,0,0,.25);
+    }
+    .hover-cta { font-weight: 800; text-transform: uppercase; letter-spacing: .6px; display: inline-flex; align-items: center; }
+    .hover-cta .arrow { margin-left: .5rem; font-size: 1.1rem; }
+
+    /* SLIDER (<1200px) */
     .story-panel {
       position: relative; overflow: hidden; border-radius: var(--tile-radius);
-      min-height: 430px; color: #fff; background: #0b2a68;
+      min-height: 430px; color: #fff; background: #0b2a68; height: 100%;
     }
-    .story-panel .panel-img {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.55);
-      transform: scale(1.02);
-    }
-    .story-panel .panel-tint { position: absolute; inset: 0; background: var(--overlay-blue); mix-blend-mode: multiply; }
-    .story-panel .panel-content {
-      position: relative; z-index: 2; padding: 28px; display: flex; flex-direction: column;
-      height: 100%; justify-content: space-between;
-    }
-    .story-panel blockquote { margin:0; font-size:1.05rem; line-height:1.7; font-weight:500; letter-spacing:.2px; }
+    .panel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.55); transform: scale(1.02); }
+    .panel-tint { position: absolute; inset: 0; background: var(--overlay-blue); mix-blend-mode: multiply; }
+    .panel-content { position: relative; z-index: 2; padding: 28px; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }
+    .story-panel blockquote { margin:0; font-size:1.05rem; line-height:1.7; font-weight:600; letter-spacing:.2px; }
     .story-meta { margin-top:18px; opacity:.95; font-weight:700; text-transform:uppercase; font-size:.9rem; letter-spacing:.5px; }
     .panel-cta a { color:#fff; text-decoration:none; font-weight:800; text-transform:uppercase; letter-spacing:.6px; display:inline-flex; align-items:center; }
     .panel-cta a .arrow { font-size:1.2rem; margin-left:.5rem; transition: transform .25s ease; }
     .panel-cta a:hover .arrow { transform: translateX(3px); }
 
     /* Swiper controls */
-    .swiper {
-      padding-bottom: 36px; /* room for dots */
-    }
-    .swiper-pagination-bullet { width:8px; height:8px; background:#0d3b8e; opacity:.5; }
+    .swiper { padding-bottom: 36px; }
+    .successSwiper .swiper-slide { height: auto; }
+    .swiper-pagination-bullet { width:8px; height:8px; background:var(--brand-blue); opacity:.5; }
     .swiper-pagination-bullet-active { opacity:1; }
     .swiper-button-prev, .swiper-button-next {
       color:#fff; width:36px; height:36px; border-radius:50%;
-      background: rgba(0,0,0,.35);
-      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+      background: rgba(0,0,0,.35); box-shadow: 0 2px 8px rgba(0,0,0,.25);
     }
     .swiper-button-prev::after, .swiper-button-next::after { font-size:16px; font-weight:700; }
     .swiper-button-disabled { opacity:.4 !important; }
 
-    @media (max-width: 420px) {
-      .story-panel { min-height: 380px; }
+    @media (max-width: 420px) { .story-panel { min-height: 380px; } }
+    @media (prefers-reduced-motion: reduce) { .person-card img, .hover-layer { transition: none; } }
+
+    /* Centered CTA button */
+    .Stories-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      color: #000;
+      font-weight: 800;
+      padding: 12px 20px;
+      font-size: 13px;
+      text-decoration: none;
+      overflow: hidden;
+      transition: color 0.4s ease;
+      z-index: 0;
+      border: 1px solid black;
     }
+    .Stories-button::before {
+      content: "";
+      position: absolute; top: 0; left: 50%;
+      width: 0%; height: 100%; background-color: #00328F; 
+      transform: translateX(-50%); z-index: -1; transition: width 0.4s ease;
+    }
+    .Stories-button:hover::before { width: 110%; }
+    .Stories-button:hover { color: #fff; border: 1px solid #00328F }
+    .Stories-button i { margin-left: 8px; font-size: 0.9rem; }
   </style>
 </head>
 <body>
 
 <section id="success-stories-section" class="py-5">
   <div class="container">
-    <div class="text-center mb-4 mb-lg-5">
+    <div class="text-left mb-4 mb-lg-5">
       <h2 class="fw-bold text-uppercase">Success Stories</h2>
       <p class="text-muted mb-0">Success isn’t one size fits all. Discover the unique academic and professional journeys behind our community members.</p>
     </div>
 
     <!-- GRID (≥1200px) -->
-    <div class="d-none d-xl-block">
+    <div class="d-none d-xl-block"> 
       <div class="row g-3 row-cols-5">
+        <!-- 1 -->
         <div class="col">
-          <a href="#" class="person-card">
+          <a href="#" class="person-card" aria-label="Read Leonie Zillikens' story">
             <img src="https://i.pravatar.cc/800?img=12" alt="Leonie Zillikens" />
             <div class="name-overlay">Leonie Zillikens</div>
+            <div class="hover-layer">
+              <blockquote>“IE University’s training in data interpretation and human‑centered research gave me a strong foundation to advise clients and colleagues.”</blockquote>
+              <div class="hover-cta">See the story <span class="arrow">›</span></div>
+            </div>
           </a>
         </div>
+        <!-- 2 -->
         <div class="col">
-          <a href="#" class="person-card">
+          <a href="#" class="person-card" aria-label="Read Isabella Gelberg‑Hansen's story">
             <img src="https://i.pravatar.cc/800?img=5" alt="Isabella Gelberg‑Hansen" />
             <div class="name-overlay">Isabella Gelberg‑Hansen</div>
+            <div class="hover-layer">
+              <blockquote>“Behavior & Social Sciences prepared me to navigate complex environments and manage diverse priorities.”</blockquote>
+              <div class="hover-cta">See the story <span class="arrow">›</span></div>
+            </div>
           </a>
         </div>
+        <!-- 3 -->
         <div class="col">
-          <a href="#" class="person-card">
+          <a href="#" class="person-card" aria-label="Read Joaquín González' story">
             <img src="https://i.pravatar.cc/800?img=33" alt="Joaquín González" />
             <div class="name-overlay">Joaquín González</div>
+            <div class="hover-layer">
+              <blockquote>“I combined analytical rigor with creativity—crucial for my consulting role.”</blockquote>
+              <div class="hover-cta">See the story <span class="arrow">›</span></div>
+            </div>
           </a>
         </div>
+        <!-- 4 -->
         <div class="col">
-          <a href="#" class="person-card">
+          <a href="#" class="person-card" aria-label="Read María Baeza's story">
             <img src="https://i.pravatar.cc/800?img=47" alt="María Baeza" />
             <div class="name-overlay">María Baeza</div>
+            <div class="hover-layer">
+              <blockquote>“Hands‑on projects showed me how to turn insights into impact and lead teams.”</blockquote>
+              <div class="hover-cta">See the story <span class="arrow">›</span></div>
+            </div>
           </a>
         </div>
+        <!-- 5 -->
         <div class="col">
-          <a href="#" class="person-card">
+          <a href="#" class="person-card" aria-label="Read Jill Fiore Van Well's story">
             <img src="https://i.pravatar.cc/800?img=48" alt="Jill Fiore Van Well" />
             <div class="name-overlay">Jill Fiore Van Well</div>
+            <div class="hover-layer">
+              <blockquote>“The international environment made me adaptable and solution‑oriented.”</blockquote>
+              <div class="hover-cta">See the story <span class="arrow">›</span></div>
+            </div>
           </a>
         </div>
+        <!-- 6 -->
         <div class="col">
-          <a href="#" class="person-card">
+          <a href="#" class="person-card" aria-label="Read Kyuchul (Peter) Kim's story">
             <img src="https://i.pravatar.cc/800?img=56" alt="Kyuchul (Peter) Kim" />
             <div class="name-overlay">Kyuchul (Peter) Kim</div>
+            <div class="hover-layer">
+              <blockquote>“I learned to bridge qualitative and quantitative perspectives for partners.”</blockquote>
+              <div class="hover-cta">See the story <span class="arrow">›</span></div>
+            </div>
           </a>
         </div>
+        <!-- 7 -->
         <div class="col">
-          <a href="#" class="person-card">
+          <a href="#" class="person-card" aria-label="Read Rahyun Kim's story">
             <img src="https://i.pravatar.cc/800?img=58" alt="Rahyun Kim" />
             <div class="name-overlay">Rahyun Kim</div>
+            <div class="hover-layer">
+              <blockquote>“I turn complex data into simple stories so decisions are evidence‑based.”</blockquote>
+              <div class="hover-cta">See the story <span class="arrow">›</span></div>
+            </div>
           </a>
         </div>
+        <!-- 8 -->
         <div class="col">
-          <a href="#" class="person-card">
+          <a href="#" class="person-card" aria-label="Read Andy Hyunjo Lee's story">
             <img src="https://i.pravatar.cc/800?img=62" alt="Andy Hyunjo Lee" />
             <div class="name-overlay">Andy Hyunjo Lee</div>
+            <div class="hover-layer">
+              <blockquote>“Real‑world casework and mentorship gave me confidence to lead projects.”</blockquote>
+              <div class="hover-cta">See the story <span class="arrow">›</span></div>
+            </div>
           </a>
         </div>
+        <!-- 9 -->
         <div class="col">
-          <a href="#" class="person-card">
+          <a href="#" class="person-card" aria-label="Read Belén Tomé's story">
             <img src="https://i.pravatar.cc/800?img=66" alt="Belén Tomé" />
             <div class="name-overlay">Belén Tomé</div>
+            <div class="hover-layer">
+              <blockquote>“The program made me proactive and creative—ready for new challenges.”</blockquote>
+              <div class="hover-cta">See the story <span class="arrow">›</span></div>
+            </div>
           </a>
         </div>
+        <!-- 10 -->
         <div class="col">
-          <a href="#" class="person-card">
+          <a href="#" class="person-card" aria-label="Read Manuel Álvarez de la Gala's story">
             <img src="https://i.pravatar.cc/800?img=68" alt="Manuel Álvarez de la Gala" />
             <div class="name-overlay">Manuel Álvarez de la Gala</div>
+            <div class="hover-layer">
+              <blockquote>“A foundation in behavioral science shaped my approach to leadership.”</blockquote>
+              <div class="hover-cta">See the story <span class="arrow">›</span></div>
+            </div>
           </a>
         </div>
       </div>
@@ -150,16 +254,13 @@
     <div class="d-xl-none">
       <div class="swiper successSwiper">
         <div class="swiper-wrapper">
-
-          <!-- 1 -->
+          <!-- Slides -->
           <div class="swiper-slide">
             <div class="story-panel">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=12" alt="Leonie Zillikens" />
               <div class="panel-tint"></div>
               <div class="panel-content">
-                <blockquote>
-                  “IE University’s training in data interpretation and human‑centered research gave me a strong foundation to advise both clients and colleagues.”
-                </blockquote>
+                <blockquote>“IE University’s training in data interpretation and human‑centered research gave me a strong foundation to advise both clients and colleagues.”</blockquote>
                 <div>
                   <div class="story-meta">Leonie Zillikens</div>
                   <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
@@ -168,13 +269,12 @@
             </div>
           </div>
 
-          <!-- 2 -->
           <div class="swiper-slide">
             <div class="story-panel">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=5" alt="Isabella Gelberg-Hansen" />
               <div class="panel-tint"></div>
               <div class="panel-content">
-                <blockquote>“BSS prepared me to navigate complex environments, work across cultures, and manage priorities.”</blockquote>
+                <blockquote>“Behavior & Social Sciences prepared me to navigate complex environments, work across cultures, and manage priorities.”</blockquote>
                 <div>
                   <div class="story-meta">Isabella Gelberg‑Hansen</div>
                   <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
@@ -183,7 +283,6 @@
             </div>
           </div>
 
-          <!-- 3 -->
           <div class="swiper-slide">
             <div class="story-panel">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=33" alt="Joaquín González" />
@@ -198,7 +297,6 @@
             </div>
           </div>
 
-          <!-- 4 -->
           <div class="swiper-slide">
             <div class="story-panel">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=47" alt="María Baeza" />
@@ -213,7 +311,6 @@
             </div>
           </div>
 
-          <!-- 5 -->
           <div class="swiper-slide">
             <div class="story-panel">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=48" alt="Jill Fiore Van Well" />
@@ -228,7 +325,6 @@
             </div>
           </div>
 
-          <!-- 6 -->
           <div class="swiper-slide">
             <div class="story-panel">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=56" alt="Kyuchul (Peter) Kim" />
@@ -243,7 +339,6 @@
             </div>
           </div>
 
-          <!-- 7 -->
           <div class="swiper-slide">
             <div class="story-panel">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=58" alt="Rahyun Kim" />
@@ -258,7 +353,6 @@
             </div>
           </div>
 
-          <!-- 8 -->
           <div class="swiper-slide">
             <div class="story-panel">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=62" alt="Andy Hyunjo Lee" />
@@ -273,7 +367,6 @@
             </div>
           </div>
 
-          <!-- 9 -->
           <div class="swiper-slide">
             <div class="story-panel">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=66" alt="Belén Tomé" />
@@ -288,7 +381,6 @@
             </div>
           </div>
 
-          <!-- 10 -->
           <div class="swiper-slide">
             <div class="story-panel">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=68" alt="Manuel Álvarez de la Gala" />
@@ -305,12 +397,20 @@
 
         </div>
 
-        <!-- Controls -->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
         <div class="swiper-pagination"></div>
       </div>
     </div>
+
+    <!-- Centered CTA below the grid/slider -->
+    <div class="mt-4 text-center">
+      <a href="#" class="Stories-button">
+        DISCOVER MORE STORIES
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -320,15 +420,13 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-  // Slider visible only below 1200px (we still init it safely)
   const swiper = new Swiper('.successSwiper', {
     speed: 600,
     spaceBetween: 16,
     slidesPerView: 1,
-    // No wrapping rows; we just change "per view" by breakpoint
     breakpoints: {
-      768: { slidesPerView: 2 },   // md
-      992: { slidesPerView: 3 },   // lg (<1200)
+      768: { slidesPerView: 2 },  // md
+      992: { slidesPerView: 3 },  // lg (<1200)
     },
     pagination: { el: '.successSwiper .swiper-pagination', clickable: true },
     navigation: {
