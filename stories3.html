@@ -6,20 +6,34 @@
   <title>Success Stories Section</title>
   <!-- Swiper -->
   <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
-
-    <!-- Bootstrap & Font Awesome -->
+  <!-- Bootstrap & Font Awesome -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-  <!-- Google Font -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- PT serif    -->
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --tile-radius: 0px;
       --overlay-blue: rgba(12, 54, 120, 0.92);
       --brand-blue: #0d3b8e;
+    }
+    #success-stories-section{
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    #success-stories-section span{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 35px;
+    }
+
+    #success-stories-section p {
+      font-family: 'PT Serif', serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #6c757d;
     }
 
     /* GRID (desktop ≥1200px) */
@@ -65,25 +79,30 @@
     .person-card:focus-within .name-overlay { opacity: 0; }
 
     .hover-layer blockquote {
-      margin: 0; font-size: .98rem; line-height: 1.65; font-weight: 600; max-width: 90%;
-      text-shadow: 0 1px 2px rgba(0,0,0,.25);
+      font-size: 15px; font-weight: 400; font-family: PT Serif, serif;
     }
-    .hover-cta { font-weight: 800; text-transform: uppercase; letter-spacing: .6px; display: inline-flex; align-items: center; }
-    .hover-cta .arrow { margin-left: .5rem; font-size: 1.1rem; }
+    .hover-cta {  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; display: inline-flex; align-items: center; }
+    .hover-cta .arrow { margin-left: .5rem; font-size: 11px; }
 
     /* SLIDER (<1200px) */
     .story-panel {
       position: relative; overflow: hidden; border-radius: var(--tile-radius);
       min-height: 430px; color: #fff; background: #0b2a68; height: 100%;
+      text-decoration: none; display: block; cursor: pointer;
     }
     .panel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.55); transform: scale(1.02); }
     .panel-tint { position: absolute; inset: 0; background: var(--overlay-blue); mix-blend-mode: multiply; }
     .panel-content { position: relative; z-index: 2; padding: 28px; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }
-    .story-panel blockquote { margin:0; font-size:1.05rem; line-height:1.7; font-weight:600; letter-spacing:.2px; }
+    .story-panel blockquote {  font-size: 15px; font-weight: 400; font-family: PT Serif, serif; }
     .story-meta { margin-top:18px; opacity:.95; font-weight:700; text-transform:uppercase; font-size:.9rem; letter-spacing:.5px; }
-    .panel-cta a { color:#fff; text-decoration:none; font-weight:800; text-transform:uppercase; letter-spacing:.6px; display:inline-flex; align-items:center; }
-    .panel-cta a .arrow { font-size:1.2rem; margin-left:.5rem; transition: transform .25s ease; }
-    .panel-cta a:hover .arrow { transform: translateX(3px); }
+
+    /* Card CTA text (no nested <a> inside .story-panel) */
+    .panel-cta { color:#fff; font-weight:800; text-transform:uppercase; letter-spacing:.6px; display:inline-flex; align-items:center; }
+    .panel-cta .arrow { font-size:1.2rem; margin-left:.5rem; transition: transform .25s ease; }
+    .story-panel:hover .panel-cta .arrow,
+    .story-panel:focus-visible .panel-cta .arrow { transform: translateX(3px); }
+
+    .story-panel:focus-visible { outline: 3px solid var(--brand-blue); outline-offset: 2px; }
 
     /* Swiper controls */
     .swiper { padding-bottom: 36px; }
@@ -98,7 +117,7 @@
     .swiper-button-disabled { opacity:.4 !important; }
 
     @media (max-width: 420px) { .story-panel { min-height: 380px; } }
-    @media (prefers-reduced-motion: reduce) { .person-card img, .hover-layer { transition: none; } }
+    @media (prefers-reduced-motion: reduce) { .person-card img, .hover-layer, .panel-cta .arrow { transition: none; } }
 
     /* Centered CTA button */
     .Stories-button {
@@ -120,7 +139,7 @@
     .Stories-button::before {
       content: "";
       position: absolute; top: 0; left: 50%;
-      width: 0%; height: 100%; background-color: #00328F; 
+      width: 0%; height: 100%; background-color: #00328F;
       transform: translateX(-50%); z-index: -1; transition: width 0.4s ease;
     }
     .Stories-button:hover::before { width: 110%; }
@@ -133,12 +152,12 @@
 <section id="success-stories-section" class="py-5">
   <div class="container">
     <div class="text-left mb-4 mb-lg-5">
-      <h2 class="fw-bold text-uppercase">Success Stories</h2>
+      <span class="text-uppercase">Success Stories</span>
       <p class="text-muted mb-0">Success isn’t one size fits all. Discover the unique academic and professional journeys behind our community members.</p>
     </div>
 
     <!-- GRID (≥1200px) -->
-    <div class="d-none d-xl-block"> 
+    <div class="d-none d-xl-block">
       <div class="row g-3 row-cols-5">
         <!-- 1 -->
         <div class="col">
@@ -257,147 +276,155 @@
     <div class="d-xl-none">
       <div class="swiper successSwiper">
         <div class="swiper-wrapper">
-          <!-- Slides -->
+          <!-- 1 -->
           <div class="swiper-slide">
-            <div class="story-panel">
+            <a class="story-panel" href="#" aria-label="Read Leonie Zillikens' story">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=12" alt="Leonie Zillikens" />
               <div class="panel-tint"></div>
               <div class="panel-content">
                 <blockquote>“IE University’s training in data interpretation and human‑centered research gave me a strong foundation to advise both clients and colleagues.”</blockquote>
                 <div>
                   <div class="story-meta">Leonie Zillikens</div>
-                  <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
+                  <div class="panel-cta mt-2">See the story <span class="arrow">›</span></div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
+          <!-- 2 -->
           <div class="swiper-slide">
-            <div class="story-panel">
+            <a class="story-panel" href="#" aria-label="Read Isabella Gelberg‑Hansen's story">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=5" alt="Isabella Gelberg-Hansen" />
               <div class="panel-tint"></div>
               <div class="panel-content">
                 <blockquote>“Behavior & Social Sciences prepared me to navigate complex environments, work across cultures, and manage priorities.”</blockquote>
                 <div>
                   <div class="story-meta">Isabella Gelberg‑Hansen</div>
-                  <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
+                  <div class="panel-cta mt-2">See the story <span class="arrow">›</span></div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
+          <!-- 3 -->
           <div class="swiper-slide">
-            <div class="story-panel">
+            <a class="story-panel" href="#" aria-label="Read Joaquín González' story">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=33" alt="Joaquín González" />
               <div class="panel-tint"></div>
               <div class="panel-content">
                 <blockquote>“I combined analytical rigor with creativity—crucial for my consulting role.”</blockquote>
                 <div>
                   <div class="story-meta">Joaquín González</div>
-                  <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
+                  <div class="panel-cta mt-2">See the story <span class="arrow">›</span></div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
+          <!-- 4 -->
           <div class="swiper-slide">
-            <div class="story-panel">
+            <a class="story-panel" href="#" aria-label="Read María Baeza's story">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=47" alt="María Baeza" />
               <div class="panel-tint"></div>
               <div class="panel-content">
                 <blockquote>“Hands‑on projects showed me how to turn insights into impact and lead teams.”</blockquote>
                 <div>
                   <div class="story-meta">María Baeza</div>
-                  <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
+                  <div class="panel-cta mt-2">See the story <span class="arrow">›</span></div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
+          <!-- 5 -->
           <div class="swiper-slide">
-            <div class="story-panel">
+            <a class="story-panel" href="#" aria-label="Read Jill Fiore Van Well's story">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=48" alt="Jill Fiore Van Well" />
               <div class="panel-tint"></div>
               <div class="panel-content">
                 <blockquote>“The international environment made me adaptable and solution‑oriented.”</blockquote>
                 <div>
                   <div class="story-meta">Jill Fiore Van Well</div>
-                  <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
+                  <div class="panel-cta mt-2">See the story <span class="arrow">›</span></div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
+          <!-- 6 -->
           <div class="swiper-slide">
-            <div class="story-panel">
+            <a class="story-panel" href="#" aria-label="Read Kyuchul (Peter) Kim's story">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=56" alt="Kyuchul (Peter) Kim" />
               <div class="panel-tint"></div>
               <div class="panel-content">
                 <blockquote>“I learned to bridge qualitative and quantitative perspectives for partners.”</blockquote>
                 <div>
                   <div class="story-meta">Kyuchul (Peter) Kim</div>
-                  <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
+                  <div class="panel-cta mt-2">See the story <span class="arrow">›</span></div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
+          <!-- 7 -->
           <div class="swiper-slide">
-            <div class="story-panel">
+            <a class="story-panel" href="#" aria-label="Read Rahyun Kim's story">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=58" alt="Rahyun Kim" />
               <div class="panel-tint"></div>
               <div class="panel-content">
                 <blockquote>“I turn complex data into simple stories so decisions are evidence‑based.”</blockquote>
                 <div>
                   <div class="story-meta">Rahyun Kim</div>
-                  <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
+                  <div class="panel-cta mt-2">See the story <span class="arrow">›</span></div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
+          <!-- 8 -->
           <div class="swiper-slide">
-            <div class="story-panel">
+            <a class="story-panel" href="#" aria-label="Read Andy Hyunjo Lee's story">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=62" alt="Andy Hyunjo Lee" />
               <div class="panel-tint"></div>
               <div class="panel-content">
                 <blockquote>“Real‑world casework and mentorship gave me confidence to lead projects.”</blockquote>
                 <div>
                   <div class="story-meta">Andy Hyunjo Lee</div>
-                  <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
+                  <div class="panel-cta mt-2">See the story <span class="arrow">›</span></div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
+          <!-- 9 -->
           <div class="swiper-slide">
-            <div class="story-panel">
+            <a class="story-panel" href="#" aria-label="Read Belén Tomé's story">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=66" alt="Belén Tomé" />
               <div class="panel-tint"></div>
               <div class="panel-content">
                 <blockquote>“The program made me proactive and creative—ready for new challenges.”</blockquote>
                 <div>
                   <div class="story-meta">Belén Tomé</div>
-                  <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
+                  <div class="panel-cta mt-2">See the story <span class="arrow">›</span></div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
 
+          <!-- 10 -->
           <div class="swiper-slide">
-            <div class="story-panel">
+            <a class="story-panel" href="#" aria-label="Read Manuel Álvarez de la Gala's story">
               <img class="panel-img" src="https://i.pravatar.cc/800?img=68" alt="Manuel Álvarez de la Gala" />
               <div class="panel-tint"></div>
               <div class="panel-content">
                 <blockquote>“A foundation in behavioral science shaped my approach to leadership.”</blockquote>
                 <div>
                   <div class="story-meta">Manuel Álvarez de la Gala</div>
-                  <div class="panel-cta mt-2"><a href="#">See the story <span class="arrow">›</span></a></div>
+                  <div class="panel-cta mt-2">See the story <span class="arrow">›</span></div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
-
         </div>
 
         <div class="swiper-button-prev"></div>
@@ -418,7 +445,7 @@
 </section>
 
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
