@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faculty Directory</title>
+
+  <!-- Bootstrap 5 + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent: #0d6efd;        /* Bootstrap primary */
+      --soft: #f4f6f8;
+      --card: #f1f3f5;
+      --title: #212529;
+      --name: #0b4fb3;
+    }
+    body{ background:#fff; color:#343a40; }
+
+    /* Header */
+    .faculty-header h1{
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--title);
+      margin-bottom: .25rem;
+      font-size: clamp(2rem, 5vw, 3.25rem);
+    }
+    .faculty-header .underline{
+      width: 48px; height: 3px; background: var(--title); border-radius: 2px; margin-bottom: 1rem;
+    }
+    .faculty-intro{ color:#6c757d; max-width: 1100px; }
+
+    /* Filters (not sticky) */
+    .filters-sticky{
+      position: static;
+      background: #fff;
+      padding: .75rem 0 .5rem;
+    }
+    .search-wrap .form-control{
+      border-radius: 24px; padding-left: 2.25rem;
+      background: var(--soft); border: 1px solid #e8ebee;
+    }
+    .search-wrap .bi-search{
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color:#6c757d;
+    }
+    .btn-filter{
+      border-radius: 24px; background: #fff; border: 1px solid #e8ebee;
+      padding: .5rem .875rem; min-width: 220px; text-align: left;
+    }
+
+    /* Dropdowns: width = button; aligned left */
+    .dropdown[data-bs-auto-close="outside"] .dropdown-menu{
+      min-width: 100%; width: 100%;
+      border: 1px solid #e8ebee; box-shadow: 0 10px 24px rgba(0,0,0,.08);
+      border-radius: 12px; max-height: 320px; overflow-y: auto; transform-origin: top left;
+    }
+    .dropdown-menu[data-bs-popper]{ left: 0; right: auto; margin-top: .5rem; }
+
+    /* Proper checkbox layout inside dropdown */
+    .dropdown-menu .form-check{
+      display: flex; align-items: center; gap: .5rem;
+      padding: .5rem .75rem; margin: 0; cursor: pointer;
+    }
+    .dropdown-menu .form-check-input{
+      float: none; margin: 0; width: 1rem; height: 1rem;
+    }
+    .dropdown-menu .form-check-label{ cursor: pointer; width: 100%; }
+    .dropdown-menu .form-check:hover{ background:#f8f9fa; }
+    .dropdown-menu .form-check-input:checked{ background-color: var(--accent); border-color: var(--accent); }
+
+    /* Keep the "All ..." row sticky at top of dropdown */
+    .all-opt-sticky{ position: sticky; top: 0; z-index: 1; background:#fff; }
+
+    /* Result count */
+    .result-count{ margin-top:.25rem; font-size:.875rem; color:#6c757d; }
+
+    /* Cards */
+    .faculty-grid{ margin-top: 1.5rem; }
+    .faculty-card{
+      position: relative; background: var(--card); border-radius: 16px;
+      padding: 56px 16px 18px; text-align: center; transition: .2s ease;
+      overflow: visible; /* allow avatar to float */
+    }
+    .faculty-card:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.06); }
+    .avatar{
+      position: absolute; left: 50%; transform: translateX(-50%);
+      top: -40px; width: 104px; height:104px; border-radius: 50%;
+      object-fit: cover; border: 6px solid #fff; box-shadow: 0 4px 14px rgba(0,0,0,.12);
+      outline: 4px solid var(--accent); background: #fff; z-index: 2;
+    }
+    .faculty-name{
+      margin-top: 36px; font-size: .92rem; font-weight: 800;
+      text-transform: uppercase; color: var(--name); letter-spacing: .3px;
+      display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+      overflow:hidden; min-height:2.6em;
+    }
+    .faculty-meta{ font-size: .8rem; color:#6c757d; }
+    .no-results{ display:none; text-align:center; color:#6c757d; padding: 3rem 0; }
+
+    /* Pagination style */
+    .pagination{ gap:.25rem; }
+    .pagination .page-link{
+      border: 0; background: transparent; color:#6c757d;
+      padding:.25rem .45rem; line-height:1; border-radius:.25rem;
+    }
+    .pagination .page-link:hover{ background: var(--soft); color:#212529; }
+    .pagination .page-item.active .page-link{
+      color: var(--accent); font-weight: 600;
+      border-bottom: 2px solid var(--accent); border-radius: 0;
+      background: transparent;
+    }
+    .pagination .page-item.disabled .page-link{ color:#c0c4c9; }
+    .page-item.ellipsis .page-link{ pointer-events: none; }
+
+    /* Focus */
+    .btn-filter:focus, .form-control:focus{
+      box-shadow: 0 0 0 .2rem rgba(13,110,253,.15);
+      border-color: var(--accent);
+    }
+    @media (min-width: 992px){ .btn-filter{ min-width: 260px; } }
+  </style>
+</head>
+<body>
+  <section class="container py-4 py-md-5" id="faculty">
+    <!-- Title + intro -->
+    <div class="faculty-header">
+      <h1>FACULTY</h1>
+      <div class="underline"></div>
+    </div>
+    <p class="faculty-intro">
+      As with our students, our faculty range from a richly diverse number of nationalities across all schools.
+      With over 500 professors at the university, each discipline benefits from their own community of highly
+      experienced members. Browse, search, and filter to meet our faculty members and learn how they can help
+      guide you towards your chosen career.
+    </p>
+
+    <!-- Filters -->
+    <div class="filters-sticky">
+      <div class="row g-2 align-items-center">
+        <!-- Search -->
+        <div class="col-12 col-md-4">
+          <div class="position-relative search-wrap">
+            <i class="bi bi-search"></i>
+            <input type="text" class="form-control" id="searchInput" placeholder="What are you looking for?" aria-label="Search faculty">
+          </div>
+        </div>
+
+        <!-- Academic areas -->
+        <div class="col-12 col-md-4">
+          <div class="dropdown" data-bs-auto-close="outside">
+            <button class="btn btn-filter w-100 d-flex justify-content-between align-items-center" id="areasBtn" data-bs-toggle="dropdown" aria-expanded="false">
+              <span>All academic areas</span>
+              <i class="bi bi-chevron-down ms-2"></i>
+            </button>
+            <div class="dropdown-menu p-0" aria-labelledby="areasBtn" id="areasMenu">
+              <div class="p-2 border-bottom all-opt-sticky">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="__ALL__" id="areaAll" checked>
+                  <label class="form-check-label" for="areaAll">All academic areas</label>
+                </div>
+              </div>
+              <div id="areasList"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Faculty categories -->
+        <div class="col-12 col-md-3">
+          <div class="dropdown" data-bs-auto-close="outside">
+            <button class="btn btn-filter w-100 d-flex justify-content-between align-items-center" id="categoriesBtn" data-bs-toggle="dropdown" aria-expanded="false">
+              <span>All faculty categories</span>
+              <i class="bi bi-chevron-down ms-2"></i>
+            </button>
+            <div class="dropdown-menu p-0" aria-labelledby="categoriesBtn" id="categoriesMenu">
+              <div class="p-2 border-bottom all-opt-sticky">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="__ALL__" id="catAll" checked>
+                  <label class="form-check-label" for="catAll">All faculty categories</label>
+                </div>
+              </div>
+              <div id="categoriesList"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clear button -->
+        <div class="col-12 col-md-auto ms-md-auto text-md-end">
+          <button class="btn btn-sm btn-outline-secondary w-100 w-md-auto" id="clearFiltersBtn">
+            <i class="bi bi-x-circle me-1"></i>Clear filters
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result count under the filters -->
+    <div class="result-count"><span id="resultCount">0</span> result(s)</div>
+
+    <!-- Grid -->
+    <div class="faculty-grid">
+      <!-- ADDED gy-5 to increase vertical space between rows -->
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 gy-5" id="cardsRow"></div>
+      <div class="no-results" id="noResults">No results found. Try adjusting your search or filters.</div>
+
+      <!-- Pagination -->
+      <nav class="d-flex justify-content-center mt-4" aria-label="Faculty pagination" id="paginationWrap"></nav>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Demo data (replace with your real data or fetch from API)
+    const facultyData = [
+      { id: 1, name: "Adam Caplowe", areas: ["Economics", "Finance"], category: "Adjunct", photo: "https://randomuser.me/api/portraits/men/32.jpg" },
+      { id: 2, name: "Adam Magdar", areas: ["Digital & Tech Law", "Comparative Politics"], category: "Visiting", photo: "https://randomuser.me/api/portraits/men/9.jpg" },
+      { id: 3, name: "Adela Gómez Alonso", areas: ["International Relations", "Business"], category: "Full-time", photo: "https://randomuser.me/api/portraits/women/68.jpg" },
+      { id: 4, name: "Adrián Carrió Fernández", areas: ["Entrepreneurship", "Business"], category: "Adjunct", photo: "https://randomuser.me/api/portraits/men/22.jpg" },
+      { id: 5, name: "Adrián Castillero Franco", areas: ["Architecture & Design"], category: "Full-time", photo: "https://randomuser.me/api/portraits/men/77.jpg" },
+      { id: 6, name: "Adrián Jofre Bosch", areas: ["Science & Technology", "Data & Tech"], category: "Visiting", photo: "https://randomuser.me/api/portraits/men/11.jpg" },
+      { id: 7, name: "Aida Martínez", areas: ["Comparative Politics", "International Relations"], category: "Emeritus", photo: "https://randomuser.me/api/portraits/women/72.jpg" },
+      { id: 8, name: "Álvaro Ortega", areas: ["Economics", "Entrepreneurship"], category: "Full-time", photo: "https://randomuser.me/api/portraits/men/50.jpg" },
+      { id: 9, name: "Sofía Rivas", areas: ["Architecture & Design"], category: "Adjunct", photo: "https://randomuser.me/api/portraits/women/31.jpg" },
+      { id: 10, name: "Daniel Benítez", areas: ["Digital & Tech Law", "Business"], category: "Full-time", photo: "https://randomuser.me/api/portraits/men/41.jpg" },
+      { id: 11, name: "Lucía Morales", areas: ["Finance", "Economics"], category: "Adjunct", photo: "https://randomuser.me/api/portraits/women/63.jpg" },
+      { id: 12, name: "Héctor Navarro", areas: ["Data & Tech"], category: "Visiting", photo: "https://randomuser.me/api/portraits/men/8.jpg" }
+    ];
+
+    // If you want to simulate lots of data, uncomment below
+    // for (let i = 0; i < 10; i++) {
+    //   facultyData.push(...facultyData.map(p => ({ ...p, id: p.id + (i+1)*100, name: p.name + ' ' + (i+2) })));
+    // }
+
+    // State
+    let selectedAreas = new Set();       // empty = all
+    let selectedCategories = new Set();  // empty = all
+    let searchTerm = "";
+    let currentPage = 1;
+    const pageSize = 12; // items per page
+
+    // Elements
+    const cardsRow = document.getElementById('cardsRow');
+    const noResults = document.getElementById('noResults');
+    const resultCount = document.getElementById('resultCount');
+    const searchInput = document.getElementById('searchInput');
+    const areasList = document.getElementById('areasList');
+    const categoriesList = document.getElementById('categoriesList');
+    const areasBtn = document.getElementById('areasBtn');
+    const categoriesBtn = document.getElementById('categoriesBtn');
+    const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+    const paginationWrap = document.getElementById('paginationWrap');
+
+    // Build filter options from data
+    const areaOptions = [...new Set(facultyData.flatMap(p => p.areas))].sort((a,b) => a.localeCompare(b));
+    const categoryOptions = [...new Set(facultyData.map(p => p.category))].sort((a,b) => a.localeCompare(b));
+
+    function buildCheckboxList(container, items, groupName){
+      container.innerHTML = items.map((label, i) => `
+        <div class="form-check">
+          <input class="form-check-input ${groupName}-opt" type="checkbox" value="${label}" id="${groupName}${i}">
+          <label class="form-check-label" for="${groupName}${i}">${label}</label>
+        </div>
+      `).join('');
+    }
+    buildCheckboxList(areasList, areaOptions, 'area');
+    buildCheckboxList(categoriesList, categoryOptions, 'cat');
+
+    // Keep dropdowns open when clicking inside
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+      menu.addEventListener('click', (e) => e.stopPropagation());
+    });
+
+    // "All" toggles
+    const areaAll = document.getElementById('areaAll');
+    const catAll  = document.getElementById('catAll');
+
+    areaAll.addEventListener('change', () => {
+      if (areaAll.checked){
+        document.querySelectorAll('.area-opt').forEach(c => c.checked = false);
+        selectedAreas.clear();
+        updateAreasBtn(); currentPage = 1; render();
+      }
+    });
+    catAll.addEventListener('change', () => {
+      if (catAll.checked){
+        document.querySelectorAll('.cat-opt').forEach(c => c.checked = false);
+        selectedCategories.clear();
+        updateCategoriesBtn(); currentPage = 1; render();
+      }
+    });
+
+    // Individual option handlers
+    function wireOptionHandlers(){
+      document.querySelectorAll('.area-opt').forEach(cb => {
+        cb.addEventListener('change', () => {
+          areaAll.checked = [...document.querySelectorAll('.area-opt')].some(c => c.checked) ? false : true;
+          selectedAreas = new Set([...document.querySelectorAll('.area-opt')].filter(c => c.checked).map(c => c.value));
+          updateAreasBtn(); currentPage = 1; render();
+        });
+      });
+      document.querySelectorAll('.cat-opt').forEach(cb => {
+        cb.addEventListener('change', () => {
+          catAll.checked = [...document.querySelectorAll('.cat-opt')].some(c => c.checked) ? false : true;
+          selectedCategories = new Set([...document.querySelectorAll('.cat-opt')].filter(c => c.checked).map(c => c.value));
+          updateCategoriesBtn(); currentPage = 1; render();
+        });
+      });
+    }
+    wireOptionHandlers();
+
+    // Update button labels
+    function updateAreasBtn(){
+      const n = selectedAreas.size;
+      areasBtn.querySelector('span').textContent = n ? `Academic areas (${n})` : 'All academic areas';
+    }
+    function updateCategoriesBtn(){
+      const n = selectedCategories.size;
+      categoriesBtn.querySelector('span').textContent = n ? `Faculty categories (${n})` : 'All faculty categories';
+    }
+
+    // Search (debounced)
+    let searchTimer;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        searchTerm = searchInput.value.trim().toLowerCase();
+        currentPage = 1;
+        render();
+      }, 120);
+    });
+
+    // Clear filters
+    clearFiltersBtn.addEventListener('click', () => {
+      searchInput.value = "";
+      searchTerm = "";
+      areaAll.checked = true; catAll.checked = true;
+      document.querySelectorAll('.area-opt, .cat-opt').forEach(c => c.checked = false);
+      selectedAreas.clear(); selectedCategories.clear();
+      updateAreasBtn(); updateCategoriesBtn();
+      currentPage = 1;
+      render();
+    });
+
+    // Helpers
+    const range = (start, end) => Array.from({length: end - start + 1}, (_, i) => i + start);
+    function getPagination(totalPages, current, siblingCount = 1){
+      const totalNumbers = siblingCount * 2 + 3;
+      const totalBlocks  = totalNumbers + 2;
+      if (totalPages <= totalBlocks) return range(1, totalPages);
+
+      const start = Math.max(2, current - siblingCount);
+      const end   = Math.min(totalPages - 1, current + siblingCount);
+      const hasLeft  = start > 2;
+      const hasRight = end < totalPages - 1;
+
+      let pages = [1];
+      if (hasLeft) pages.push('…');
+      pages = pages.concat(range(start, end));
+      if (hasRight) pages.push('…');
+      pages.push(totalPages);
+      return pages;
+    }
+
+    // Pagination render
+    function renderPagination(totalItems){
+      const totalPages = Math.ceil(totalItems / pageSize);
+      if (totalPages <= 1){
+        paginationWrap.innerHTML = '';
+        return;
+      }
+      const pages = getPagination(totalPages, currentPage, 1);
+      let html = '<ul class="pagination pagination-sm">';
+      html += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+          <a class="page-link" href="#" data-page="prev" aria-label="Previous">
+            <i class="bi bi-chevron-left"></i>
+          </a>
+        </li>
+      `;
+      pages.forEach(p => {
+        if (p === '…'){
+          html += `<li class="page-item disabled ellipsis"><span class="page-link">…</span></li>`;
+        } else {
+          html += `
+            <li class="page-item ${p === currentPage ? 'active' : ''}">
+              <a class="page-link" href="#" data-page="${p}" aria-label="Go to page ${p}">${p}</a>
+            </li>
+          `;
+        }
+      });
+      html += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+          <a class="page-link" href="#" data-page="next" aria-label="Next">
+            <i class="bi bi-chevron-right"></i>
+          </a>
+        </li>
+      `;
+      html += '</ul>';
+      paginationWrap.innerHTML = html;
+
+      paginationWrap.querySelectorAll('.page-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const val = link.getAttribute('data-page');
+          if (!val) return;
+          const total = Math.ceil(getFilteredResults().length / pageSize);
+          if (val === 'prev' && currentPage > 1) currentPage--;
+          else if (val === 'next' && currentPage < total) currentPage++;
+          else if (!isNaN(parseInt(val))) currentPage = parseInt(val);
+          render();
+          document.querySelector('.result-count').scrollIntoView({behavior:'smooth', block:'start'});
+        });
+      });
+    }
+
+    // Filtering
+    function getFilteredResults(){
+      return facultyData.filter(p => {
+        const inSearch = !searchTerm || [p.name, p.category, ...p.areas].join(' ').toLowerCase().includes(searchTerm);
+        const inAreas  = selectedAreas.size === 0 || p.areas.some(a => selectedAreas.has(a));
+        const inCats   = selectedCategories.size === 0 || selectedCategories.has(p.category);
+        return inSearch && inAreas && inCats;
+      });
+    }
+
+    // Main render
+    function render(){
+      const results = getFilteredResults();
+      const totalPages = Math.ceil(results.length / pageSize);
+      if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+      const start = (currentPage - 1) * pageSize;
+      const paged = results.slice(start, start + pageSize);
+
+      cardsRow.innerHTML = paged.map(p => `
+        <div class="col">
+          <div class="faculty-card h-100">
+            <img class="avatar" src="${p.photo}" alt="${p.name}">
+            <div class="faculty-name">${p.name}</div>
+            <div class="faculty-meta">${p.category}</div>
+            <div class="faculty-meta">${p.areas.join(" • ")}</div>
+          </div>
+        </div>
+      `).join('');
+
+      resultCount.textContent = results.length;
+      noResults.style.display = results.length ? 'none' : 'block';
+      renderPagination(results.length);
+    }
+
+    // Initial render
+    updateAreasBtn(); updateCategoriesBtn(); render();
+  </script>
+</body>
+</html>
