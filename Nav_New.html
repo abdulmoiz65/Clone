@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IE University Custom Navbar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap 5 CSS for offcanvas -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --ie-blue: #003580;
+      --white: #fff;
+      --dark: #222;
+      --nav-height: 100px;
+    }
+
+    body { margin: 0; background: #000; min-height: 200vh; }
+
+    /* Top wrapper */
+    .top-nav{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      z-index: 2000;
+      background: transparent;
+      transition: background 0.3s ease;
+    }
+
+    body.offcanvas-open .logo .logo-color {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+
+
+
+    /* Header */
+    .navbar{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      background: transparent;
+      color: var(--white);
+      transition: all .3s ease;
+    }
+    @media (max-width: 991.98px) {
+      :root {
+        --nav-height: 65px;
+      }
+      .navbar {
+        height: var(--nav-height);
+      }
+    }
+
+    /* Centering: logo | nav | actions */
+    .navbar .container{
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      column-gap: 24px;
+      position: relative;
+    }
+
+    /* Dual logos (white default, color on scroll/hover) */
+    .logo{
+      position: relative;
+      display: inline-block;
+    }
+    .logo img{
+      height: 40px;
+      display: block;
+      transition: opacity .2s ease, visibility .2s ease;
+    }
+    .logo .logo-color{
+      position: absolute;
+      left: 0; top: 0;
+      opacity: 0; visibility: hidden;
+    }
+    /* Swap to color when header is light */
+    .top-nav.nav-hover .logo .logo-color,
+    .top-nav.scrolled .logo .logo-color{ opacity: 1; visibility: visible; }
+    .top-nav.nav-hover .logo .logo-white,
+    .top-nav.scrolled .logo .logo-white{ opacity: 0; visibility: hidden; }
+
+    /* Nav links (center column) */
+    .nav-links{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 1;
+    }
+    /* No layout shift on hover */
+    .nav-links a{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      color: var(--white);
+      text-decoration: none;
+      padding: 10px 0;
+      transition: color .2s ease;
+    }
+    /* Underline animation */
+    .nav-links a::after{
+      content: "";
+      position: absolute;
+      left: 20%;
+      right: 20%;
+      bottom: -6px;
+      height: 2px;
+      background: var(--ie-blue);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform .2s ease;
+      pointer-events: none;
+    }
+    .nav-links a:hover,
+    .nav-links a.active{ color: var(--ie-blue); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after{ transform: scaleX(1); }
+
+    /* Programs mega menu */
+    .nav-item-with-mega{ position: relative; display: inline-block; }
+    .mega-menu{
+      display: none;
+      position: fixed;
+      left: 0; right: 0;
+      top: var(--nav-height);
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+      padding: 32px 80px 24px;
+      z-index: 3000;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+    .mega-menu-inner{
+      display: flex;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      justify-content: flex-start;
+    }
+    .mega-menu h6{
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      color: #222;
+      letter-spacing: .5px;
+    }
+    .mega-menu a{
+      display: block;
+      color: #222;
+      font-size: 15px;
+      font-weight: 400;
+      text-decoration: none;
+      margin-bottom: 7px;
+      transition: color .2s ease;
+    }
+    .mega-menu a:hover{ color: var(--ie-blue); text-decoration: underline; }
+    @media (min-width: 992px){ .nav-item-with-mega.mega-open .mega-menu{ display: block; } }
+    @media (max-width: 1199.98px){ .mega-menu{ display: none !important; } }
+
+    /* Right controls (CTA + hamburger) */
+    .right-ctrls{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-self: end;
+      margin-right: -2rem;
+    }
+    .top-button{ display: block; }
+    .top-button a{
+      border: 1px solid var(--white);
+      padding: 10px 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      background: transparent;
+      font-weight: 700;
+      transition: .3s ease;
+      display: inline-block;
+    }
+    .top-button a:hover{ background: var(--white); color: #000; }
+
+    .hamburger{
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 36px; height: 36px;
+      cursor: pointer;
+      z-index: 3000;
+    }
+    .hamburger span{
+      display: block;
+      width: 24px; height: 3px;
+      background: #fff;
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: .3s ease;
+    }
+
+    /* Offcanvas styles */
+    .offcanvas-ie{ background: var(--ie-blue); color: #fff; width: 320px !important; }
+    .offcanvas-ie .offcanvas-header{ border-bottom: 1px solid #fff2; }
+    .offcanvas-ie .logo img{ height: 36px; }
+    .offcanvas-ie .btn{
+      border: 1px solid #fff; color: #fff;
+      margin: 1.5rem 0 1rem; width: 100%;
+      font-weight: 700; text-transform: uppercase; font-size: 13px;
+    }
+    .offcanvas-ie .btn:hover{ background: #fff; color: var(--ie-blue); }
+    .offcanvas-ie .nav-links{ flex-direction: column; gap: 0; margin-top: 20px; display: flex; }
+    .offcanvas-ie .nav-links .main-link{
+      font-weight: 700; font-size: 16px; padding: 1.2rem 0;
+      border-bottom: 1px solid #fff2; display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; background: none; color: #fff; outline: none; border: none; width: 100%; text-align: left; transition: background .2s ease;
+    }
+    .offcanvas-ie .nav-links .main-link .icon{ font-size: 22px; transition: transform .2s; }
+    .offcanvas-ie .nav-links .main-link.open .icon{ transform: rotate(45deg); }
+    .offcanvas-ie .nav-links .submenu{ display: none; background: var(--ie-blue); padding-left: 10px; animation: fadeIn .2s; }
+    .offcanvas-ie .nav-links .main-link.open + .submenu{ display: block; }
+    .offcanvas-ie .nav-links .submenu-item{
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0 10px 20px; border-bottom: 1px solid #fff1; cursor: pointer;
+      font-size: 15px; font-weight: 500; color: #fff; background: none; transition: background .2s;
+    }
+    .offcanvas-ie .nav-links .submenu-item .arrow{ font-size: 18px; margin-left: 8px; }
+    .offcanvas-ie .nav-links .submenu-item:hover{ background: #002060; }
+    .offcanvas-ie .extra-links{ margin-top: 30px; font-size: 12px; opacity: .7; }
+    .offcanvas-ie .extra-links div{ margin-bottom: 6px; }
+
+    /* Next-canvas panel */
+    .offcanvas-next{
+      position: absolute; top: 0; right: -100%; width: 100%; height: 100%;
+      background: var(--ie-blue); color: #fff; z-index: 4000; transition: right .3s, opacity .3s;
+      padding: 32px 24px 24px; display: flex; flex-direction: column; visibility: hidden; opacity: 0;
+    }
+    .offcanvas-next.open{ right: 0; visibility: visible; opacity: 1; }
+    .offcanvas-next .back-btn{
+      background: none; border: none; color: #fff; font-size: 16px; font-weight: 700; margin-bottom: 24px;
+      display: flex; align-items: center; cursor: pointer; padding: 0;
+    }
+    .offcanvas-next .back-btn .arrow{ font-size: 20px; margin-right: 8px; }
+    .offcanvas-next h5{
+      font-size: 18px; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: .5px;
+      border-bottom: 1px solid #fff2; padding-bottom: 8px;
+    }
+    .offcanvas-next .next-links a{
+      display: block; color: #fff; font-size: 16px; font-weight: 500; text-decoration: none; margin-bottom: 12px; transition: color .2s;
+    }
+    .offcanvas-next .next-links a:hover{ color: #00baff; text-decoration: underline; }
+
+    @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+    /* Responsive */
+    @media (max-width: 1199.98px){
+      .nav-links{ display: none; }
+      .hamburger{ display: flex; }
+      .top-button{ display: none; }
+    }
+
+    /* Light mode on hover/scroll */
+    .top-nav.nav-hover,
+    .top-nav.scrolled{ background: #fff !important; }
+    .top-nav.scrolled .navbar{
+      background: #fff !important; color: var(--dark);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .top-nav.nav-hover .nav-links a,
+    .top-nav.scrolled .nav-links a{ color: var(--dark); }
+    .top-nav.nav-hover .nav-links a:hover,
+    .top-nav.nav-hover .nav-links a.active,
+    .top-nav.scrolled .nav-links a:hover,
+    .top-nav.scrolled .nav-links a.active{ color: var(--ie-blue); }
+    .top-nav.nav-hover .top-button a,
+    .top-nav.scrolled .top-button a{
+      border: 1px solid var(--dark);
+      color: var(--dark);
+      background: #fff;
+    }
+    .top-nav.nav-hover .top-button a:hover,
+    .top-nav.scrolled .top-button a:hover{
+      background: var(--dark); color: #fff; border-color: var(--dark);
+    }
+    .top-nav.nav-hover .hamburger span,
+    .top-nav.scrolled .hamburger span{ background: var(--dark); }
+
+    /* Hide header when offcanvas is open (mobile) */
+    body.offcanvas-open .navbar,
+    body.offcanvas-open .top-nav{
+      visibility: hidden !important;
+      pointer-events: none;
+    }
+    body.offcanvas-open{ overflow: hidden; }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <!-- HEADER -->
+    <header class="navbar" id="navbar">
+      <div class="container">
+        <div class="logo">
+          <!-- White logo for dark background -->
+          <img src="./assets/logo/logowhite.png" alt="IE University Logo (white)" class="logo-white" />
+          <!-- Colorful logo for light background (shown on scroll/hover) -->
+          <img src="./assets/maju-logo.webp" alt="IE University Logo (color)" class="logo-color" />
+        </div>
+
+        <nav class="nav-links">
+          <a href="#">About IE University</a>
+          <div class="nav-item-with-mega">
+            <a href="#">Programs</a>
+            <div class="mega-menu">
+              <div class="mega-menu-inner">
+                <div>
+                  <h6>Professional Pathways</h6>
+                  <a href="#">Programs in Business & Management</a>
+                  <a href="#">Programs in Design & Architecture</a>
+                  <a href="#">Programs in Finance, Economics & Trade</a>
+                  <a href="#">Programs in Law, International Affairs & Public Policy</a>
+                  <a href="#">Programs in Leadership & Talent Development</a>
+                  <a href="#">Programs in Marketing, Communication & Sales</a>
+                  <a href="#">Programs in Science, Technology & Data</a>
+                </div>
+                <div>
+                  <h6>Degree Types</h6>
+                  <a href="#">Undergraduate Programs</a>
+                  <a href="#">Master’s Programs</a>
+                  <a href="#">Doctorate Programs</a>
+                  <a href="#">Lifelong Learning</a>
+                  <a href="#">Alternative Credentials</a>
+                  <a href="#">IE Summer School Programs</a>
+                </div>
+                <div>
+                  <h6>Schools</h6>
+                  <a href="#">IE School of Architecture & Design</a>
+                  <a href="#">IE Business School</a>
+                  <a href="#">IE School of Politics, Economics & Global Affairs</a>
+                  <a href="#">IE School of Science & Technology</a>
+                  <a href="#">IE Law School</a>
+                  <a href="#">IE School of Humanities</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#">Admissions</a>
+          <a href="#">Faculty & Research</a>
+          <a href="#">IE Experience</a>
+          <a href="#">News & Events</a>
+        </nav>
+
+        <div class="right-ctrls">
+          <div class="top-button">
+            <a href="#">FIND YOUR PROGRAM</a>
+          </div>
+          <div class="hamburger" id="hamburger" data-bs-toggle="offcanvas" data-bs-target="#ieOffcanvas" aria-controls="ieOffcanvas">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- Offcanvas for <=1200px -->
+  <div class="offcanvas offcanvas-end offcanvas-ie" tabindex="-1" id="ieOffcanvas" aria-labelledby="ieOffcanvasLabel">
+    <div class="offcanvas-header">
+      <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/IE_University_logo.svg" alt="IE University Logo" />
+      </div>
+      <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body position-relative">
+      <a href="#" class="btn btn-outline-light mb-3">Find Your Program</a>
+
+      <nav class="nav-links">
+        <button class="main-link" data-menu="about">About IE University <span class="icon">+</span></button>
+        <button class="main-link" data-menu="programs">Programs <span class="icon">+</span></button>
+        <div class="submenu" data-submenu="programs">
+          <div class="submenu-item" data-next="Professional Pathways">Professional Pathways <span class="arrow">&gt;</span></div>
+          <div class="submenu-item" data-next="Degree Types">Degree Types <span class="arrow">&gt;</span></div>
+          <div class="submenu-item" data-next="Schools">Schools <span class="arrow">&gt;</span></div>
+        </div>
+        <button class="main-link" data-menu="admissions">Admissions <span class="icon">+</span></button>
+        <button class="main-link" data-menu="faculty">Faculty & Research <span class="icon">+</span></button>
+        <button class="main-link" data-menu="experience">IE Experience <span class="icon">+</span></button>
+        <button class="main-link" data-menu="news">News & Events <span class="icon">+</span></button>
+      </nav>
+
+      <div class="extra-links mt-4">
+        <div>Registrars Office</div>
+        <div>Students</div>
+        <div>Parents</div>
+        <div>Alumni</div>
+        <div>For Companies</div>
+      </div>
+
+      <!-- Next Canvas Panel -->
+      <div class="offcanvas-next" id="offcanvasNext">
+        <button class="back-btn" id="backBtn" type="button"><span class="arrow">&lt;</span> BACK</button>
+        <h5 id="nextTitle">TITLE</h5>
+        <div class="next-links" id="nextLinks"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page filler -->
+  <div style="height: 2000px;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Mega menu hover intent (desktop)
+    document.addEventListener('DOMContentLoaded', function () {
+      const navItem = document.querySelector('.nav-item-with-mega');
+      if (!navItem) return;
+      const megaMenu = navItem.querySelector('.mega-menu');
+      let timer;
+      function openMega(){ clearTimeout(timer); navItem.classList.add('mega-open'); }
+      function closeMega(){ timer = setTimeout(() => navItem.classList.remove('mega-open'), 80); }
+      navItem.addEventListener('mouseenter', () => { if (window.innerWidth >= 992) openMega(); });
+      navItem.addEventListener('mouseleave', () => { if (window.innerWidth >= 992) closeMega(); });
+      megaMenu.addEventListener('mouseenter', openMega);
+      megaMenu.addEventListener('mouseleave', closeMega);
+    });
+
+    // Scroll effect for navbar (adds .scrolled to .top-nav)
+    window.addEventListener('scroll', function () {
+      const topNav = document.querySelector('.top-nav');
+      if (window.scrollY > 30) topNav.classList.add('scrolled');
+      else topNav.classList.remove('scrolled');
+    });
+
+    // Navbar hover effect (desktop only, adds .nav-hover to .top-nav)
+    const topNav = document.querySelector('.top-nav');
+    const navbar = document.getElementById('navbar');
+    navbar.addEventListener('mouseenter', () => {
+      if (window.innerWidth >= 992) topNav.classList.add('nav-hover');
+    });
+    navbar.addEventListener('mouseleave', () => {
+      if (window.innerWidth >= 992) topNav.classList.remove('nav-hover');
+    });
+
+    // Offcanvas accordion and next-canvas logic
+    const mainLinks = document.querySelectorAll('.offcanvas-ie .main-link');
+    const submenus = document.querySelectorAll('.offcanvas-ie .submenu');
+    mainLinks.forEach(link => {
+      link.addEventListener('click', function () {
+        const isOpen = link.classList.contains('open');
+        mainLinks.forEach(l => l.classList.remove('open'));
+        submenus.forEach(s => s.style.display = 'none');
+        if (!isOpen) {
+          link.classList.add('open');
+          const menu = link.getAttribute('data-menu');
+          const submenu = document.querySelector(`.offcanvas-ie .submenu[data-submenu="${menu}"]`);
+          if (submenu) submenu.style.display = 'block';
+        }
+      });
+    });
+
+    // Next-canvas data
+    const submenuData = {
+      "Professional Pathways": [
+        "Programs in Business & Management",
+        "Programs in Design & Architecture",
+        "Programs in Finance, Economics & Trade",
+        "Programs in Law, International Affairs & Public Policy",
+        "Programs in Leadership & Talent Development",
+        "Programs in Marketing, Communication & Sales",
+        "Programs in Science, Technology & Data"
+      ],
+      "Degree Types": [
+        "Undergraduate Programs",
+        "Master’s Programs",
+        "Doctorate Programs",
+        "Lifelong Learning",
+        "Alternative Credentials",
+        "IE Summer School Programs"
+      ],
+      "Schools": [
+        "IE School of Architecture & Design",
+        "IE Business School",
+        "IE School of Politics, Economics & Global Affairs",
+        "IE School of Science & Technology",
+        "IE Law School",
+        "IE School of Humanities"
+      ]
+    };
+
+    document.querySelectorAll('.offcanvas-ie .submenu-item').forEach(item => {
+      item.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const title = item.getAttribute('data-next');
+        const nextPanel = document.getElementById('offcanvasNext');
+        const nextTitle = document.getElementById('nextTitle');
+        const nextLinks = document.getElementById('nextLinks');
+        nextTitle.textContent = title;
+        nextLinks.innerHTML = submenuData[title].map(link => `<a href="#" class="submenu-link">${link}</a>`).join('');
+        nextPanel.classList.add('open');
+      });
+    });
+
+    document.getElementById('backBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('offcanvasNext').classList.remove('open');
+    });
+
+    // Optional: Close offcanvas on link click (real links)
+    document.querySelectorAll('.offcanvas-ie .nav-links a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        if (link.getAttribute('href') && link.getAttribute('href') !== '#') {
+          const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('ieOffcanvas'));
+          if (offcanvas) offcanvas.hide();
+        } else {
+          e.preventDefault();
+        }
+      });
+    });
+
+    // Hide header when offcanvas is open (mobile)
+    const offcanvasEl = document.getElementById('ieOffcanvas');
+    offcanvasEl.addEventListener('show.bs.offcanvas', function () {
+      document.body.classList.add('offcanvas-open');
+    });
+    offcanvasEl.addEventListener('hidden.bs.offcanvas', function () {
+      document.body.classList.remove('offcanvas-open');
+      document.getElementById('offcanvasNext').classList.remove('open');
+    });
+
+    // Close offcanvas if resizing to desktop
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1200) {
+        const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('ieOffcanvas'));
+        if (offcanvas) offcanvas.hide();
+      }
+    });
+  </script>
+</body>
+</html>
