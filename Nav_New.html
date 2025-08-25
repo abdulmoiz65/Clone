@@ -4,8 +4,14 @@
   <meta charset="UTF-8" />
   <title>IE University Custom Navbar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Bootstrap 5 CSS for offcanvas -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- PT serif    -->
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --ie-blue: #003580;
@@ -18,6 +24,7 @@
 
     /* Top wrapper */
     .top-nav{
+      font-family:'Montserrat', sans-serif;
       position: fixed;
       top: 0;
       left: 0;
@@ -29,13 +36,9 @@
     }
 
     body.offcanvas-open .logo .logo-color {
-  opacity: 0 !important;
-  visibility: hidden !important;
-}
-
-
-
-
+    opacity: 0 !important;
+    visibility: hidden !important;
+    }
     /* Header */
     .navbar{
       position: fixed;
@@ -59,7 +62,6 @@
         height: var(--nav-height);
       }
     }
-
     /* Centering: logo | nav | actions */
     .navbar .container{
       max-width: 1200px;
@@ -71,7 +73,6 @@
       column-gap: 24px;
       position: relative;
     }
-
     /* Dual logos (white default, color on scroll/hover) */
     .logo{
       position: relative;
@@ -92,7 +93,6 @@
     .top-nav.scrolled .logo .logo-color{ opacity: 1; visibility: visible; }
     .top-nav.nav-hover .logo .logo-white,
     .top-nav.scrolled .logo .logo-white{ opacity: 0; visibility: hidden; }
-
     /* Nav links (center column) */
     .nav-links{
       display: flex;
@@ -101,38 +101,39 @@
       gap: 25px;
       text-transform: uppercase;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 11px;
       line-height: 1;
     }
     /* No layout shift on hover */
-    .nav-links a{
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      color: var(--white);
-      text-decoration: none;
-      padding: 10px 0;
-      transition: color .2s ease;
-    }
-    /* Underline animation */
-    .nav-links a::after{
-      content: "";
-      position: absolute;
-      left: 20%;
-      right: 20%;
-      bottom: -6px;
-      height: 2px;
-      background: var(--ie-blue);
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform .2s ease;
-      pointer-events: none;
-    }
-    .nav-links a:hover,
-    .nav-links a.active{ color: var(--ie-blue); }
-    .nav-links a:hover::after,
-    .nav-links a.active::after{ transform: scaleX(1); }
-
+.nav-links a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 0;
+  text-decoration: none;
+  color: var(--white);
+  transition: color .3s ease;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  width: 100%;
+  height: 2px;
+  background: var(--ie-blue);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .3s ease;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--ie-blue);
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
     /* Programs mega menu */
     .nav-item-with-mega{ position: relative; display: inline-block; }
     .mega-menu{
@@ -156,25 +157,26 @@
     }
     .mega-menu h6{
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 800 !important;
       margin-bottom: 12px;
       text-transform: uppercase;
       color: #222;
       letter-spacing: .5px;
     }
     .mega-menu a{
+      font-family: PT Serif, serif;
       display: block;
-      color: #222;
-      font-size: 15px;
+      color: #888A8C !important;
+      font-size: 13px;
       font-weight: 400;
+      text-transform: lowercase;
       text-decoration: none;
-      margin-bottom: 7px;
+      margin-bottom: 2px;
       transition: color .2s ease;
     }
     .mega-menu a:hover{ color: var(--ie-blue); text-decoration: underline; }
     @media (min-width: 992px){ .nav-item-with-mega.mega-open .mega-menu{ display: block; } }
     @media (max-width: 1199.98px){ .mega-menu{ display: none !important; } }
-
     /* Right controls (CTA + hamburger) */
     .right-ctrls{
       display: flex;
@@ -197,7 +199,6 @@
       display: inline-block;
     }
     .top-button a:hover{ background: var(--white); color: #000; }
-
     .hamburger{
       display: none;
       flex-direction: column;
@@ -217,29 +218,29 @@
     }
 
     /* Offcanvas styles */
-    .offcanvas-ie{ background: var(--ie-blue); color: #fff; width: 320px !important; }
+    .offcanvas-ie{ background: var(--ie-blue); color: #fff; width: 320px !important; font-family:'Montserrat', sans-serif; }
     .offcanvas-ie .offcanvas-header{ border-bottom: 1px solid #fff2; }
     .offcanvas-ie .logo img{ height: 36px; }
     .offcanvas-ie .btn{
-      border: 1px solid #fff; color: #fff;
-      margin: 1.5rem 0 1rem; width: 100%;
+      border: 1px solid #fff; color: #fff; border-radius: 0px !important;
+      margin: 0.5rem 0 0.5rem; width: 100%;
       font-weight: 700; text-transform: uppercase; font-size: 13px;
     }
     .offcanvas-ie .btn:hover{ background: #fff; color: var(--ie-blue); }
     .offcanvas-ie .nav-links{ flex-direction: column; gap: 0; margin-top: 20px; display: flex; }
     .offcanvas-ie .nav-links .main-link{
-      font-weight: 700; font-size: 16px; padding: 1.2rem 0;
-      border-bottom: 1px solid #fff2; display: flex; justify-content: space-between; align-items: center;
+      font-weight: 700; font-size: 13px; padding: 12px 0; border-bottom: white 1px solid !important;
+       display: flex; justify-content: space-between; align-items: center;
       cursor: pointer; background: none; color: #fff; outline: none; border: none; width: 100%; text-align: left; transition: background .2s ease;
     }
-    .offcanvas-ie .nav-links .main-link .icon{ font-size: 22px; transition: transform .2s; }
+    .offcanvas-ie .nav-links .main-link .icon{ font-size: 18px; font-weight: 400; transition: transform .2s; }
     .offcanvas-ie .nav-links .main-link.open .icon{ transform: rotate(45deg); }
     .offcanvas-ie .nav-links .submenu{ display: none; background: var(--ie-blue); padding-left: 10px; animation: fadeIn .2s; }
     .offcanvas-ie .nav-links .main-link.open + .submenu{ display: block; }
     .offcanvas-ie .nav-links .submenu-item{
       display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 0 10px 20px; border-bottom: 1px solid #fff1; cursor: pointer;
-      font-size: 15px; font-weight: 500; color: #fff; background: none; transition: background .2s;
+      padding: 10px 0 10px 0px; border-bottom: 1px solid #fff1; cursor: pointer;
+      font-size: 13px; font-weight: 400; color: #fff; background: none; transition: background .2s;
     }
     .offcanvas-ie .nav-links .submenu-item .arrow{ font-size: 18px; margin-left: 8px; }
     .offcanvas-ie .nav-links .submenu-item:hover{ background: #002060; }
@@ -259,11 +260,11 @@
     }
     .offcanvas-next .back-btn .arrow{ font-size: 20px; margin-right: 8px; }
     .offcanvas-next h5{
-      font-size: 18px; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: .5px;
-      border-bottom: 1px solid #fff2; padding-bottom: 8px;
+      font-size: 14px; font-weight: 800 !important; margin-bottom: 16px; text-transform: uppercase; letter-spacing: .5px;
+      border-bottom: 1px solid #fff2; padding-bottom: 8px; 
     }
     .offcanvas-next .next-links a{
-      display: block; color: #fff; font-size: 16px; font-weight: 500; text-decoration: none; margin-bottom: 12px; transition: color .2s;
+      display: block; color: #fff; font-size: 13px;  font-weight: 400; font-family: PT Serif, serif; text-decoration: none; margin-bottom: 12px; transition: color .2s;
     }
     .offcanvas-next .next-links a:hover{ color: #00baff; text-decoration: underline; }
 
@@ -320,11 +321,11 @@
           <!-- White logo for dark background -->
           <img src="./assets/logo/logowhite.png" alt="IE University Logo (white)" class="logo-white" />
           <!-- Colorful logo for light background (shown on scroll/hover) -->
-          <img src="./assets/maju-logo.webp" alt="IE University Logo (color)" class="logo-color" />
+          <img src="./assets/maju-logo.webp" alt="MAJU University Logo (color)" class="logo-color" />
         </div>
 
         <nav class="nav-links">
-          <a href="#">About IE University</a>
+          <a href="#">About MAJU</a>
           <div class="nav-item-with-mega">
             <a href="#">Programs</a>
             <div class="mega-menu">
@@ -346,23 +347,23 @@
                   <a href="#">Doctorate Programs</a>
                   <a href="#">Lifelong Learning</a>
                   <a href="#">Alternative Credentials</a>
-                  <a href="#">IE Summer School Programs</a>
+                  <a href="#">MAJU Summer School Programs</a>
                 </div>
                 <div>
                   <h6>Schools</h6>
-                  <a href="#">IE School of Architecture & Design</a>
-                  <a href="#">IE Business School</a>
-                  <a href="#">IE School of Politics, Economics & Global Affairs</a>
-                  <a href="#">IE School of Science & Technology</a>
-                  <a href="#">IE Law School</a>
-                  <a href="#">IE School of Humanities</a>
+                  <a href="#">MAJU School of Architecture & Design</a>
+                  <a href="#">MAJU Business School</a>
+                  <a href="#">MAJU School of Politics, Economics & Global Affairs</a>
+                  <a href="#">MAJU School of Science & Technology</a>
+                  <a href="#">MAJU Law School</a>
+                  <a href="#">MAJU School of Humanities</a>
                 </div>
               </div>
             </div>
           </div>
           <a href="#">Admissions</a>
           <a href="#">Faculty & Research</a>
-          <a href="#">IE Experience</a>
+          <a href="#">MAJU Experience</a>
           <a href="#">News & Events</a>
         </nav>
 
@@ -382,25 +383,25 @@
   <div class="offcanvas offcanvas-end offcanvas-ie" tabindex="-1" id="ieOffcanvas" aria-labelledby="ieOffcanvasLabel">
     <div class="offcanvas-header">
       <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/IE_University_logo.svg" alt="IE University Logo" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/IE_University_logo.svg" alt="MAJU University Logo" />
       </div>
       <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
     <div class="offcanvas-body position-relative">
-      <a href="#" class="btn btn-outline-light mb-3">Find Your Program</a>
+      <a href="#" class="btn btn-outline-light">Find Your Program</a>
 
       <nav class="nav-links">
-        <button class="main-link" data-menu="about">About IE University <span class="icon">+</span></button>
+        <button class="main-link" data-menu="about">About MAJU<span class="icon">+</span></button>
         <button class="main-link" data-menu="programs">Programs <span class="icon">+</span></button>
         <div class="submenu" data-submenu="programs">
-          <div class="submenu-item" data-next="Professional Pathways">Professional Pathways <span class="arrow">&gt;</span></div>
-          <div class="submenu-item" data-next="Degree Types">Degree Types <span class="arrow">&gt;</span></div>
-          <div class="submenu-item" data-next="Schools">Schools <span class="arrow">&gt;</span></div>
+          <div class="submenu-item" data-next="Professional Pathways">Professional Pathways <i class="fa-solid fa-arrow-right arrow"></i></div>
+          <div class="submenu-item" data-next="Degree Types">Degree Types <i class="fa-solid fa-arrow-right arrow"></i></div>
+          <div class="submenu-item" data-next="Schools">Schools <i class="fa-solid fa-arrow-right arrow"></i></div>
         </div>
         <button class="main-link" data-menu="admissions">Admissions <span class="icon">+</span></button>
         <button class="main-link" data-menu="faculty">Faculty & Research <span class="icon">+</span></button>
-        <button class="main-link" data-menu="experience">IE Experience <span class="icon">+</span></button>
+        <button class="main-link" data-menu="experience">MAJU Experience <span class="icon">+</span></button>
         <button class="main-link" data-menu="news">News & Events <span class="icon">+</span></button>
       </nav>
 
@@ -414,15 +415,13 @@
 
       <!-- Next Canvas Panel -->
       <div class="offcanvas-next" id="offcanvasNext">
-        <button class="back-btn" id="backBtn" type="button"><span class="arrow">&lt;</span> BACK</button>
+        <button class="back-btn" id="backBtn" type="button"><i class="fa-solid fa-arrow-left arrow"></i> BACK</button>
         <h5 id="nextTitle">TITLE</h5>
         <div class="next-links" id="nextLinks"></div>
       </div>
     </div>
   </div>
 
-  <!-- Page filler -->
-  <div style="height: 2000px;"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
