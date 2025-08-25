@@ -199,23 +199,42 @@
       display: inline-block;
     }
     .top-button a:hover{ background: var(--white); color: #000; }
-    .hamburger{
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 36px; height: 36px;
-      cursor: pointer;
-      z-index: 3000;
-    }
-    .hamburger span{
-      display: block;
-      width: 24px; height: 3px;
-      background: #fff;
-      margin: 4px 0;
-      border-radius: 2px;
-      transition: .3s ease;
-    }
+    .hamburger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 3000;
+  gap: 5px; /* space between bars */
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;              /* thinner line */
+  background: #fff;
+  border-radius: 1px;
+  transition: .3s ease;
+}
+
+.hamburger-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
+/* When navbar is hovered or scrolled (light background) */
+.top-nav.nav-hover .hamburger-label,
+.top-nav.scrolled .hamburger-label {
+  color: #000;  /* switch to black */
+}
+
 
     /* Offcanvas styles */
     .offcanvas-ie{ background: var(--ie-blue); color: #fff; width: 320px !important; font-family:'Montserrat', sans-serif; }
@@ -372,8 +391,12 @@
             <a href="#">FIND YOUR PROGRAM</a>
           </div>
           <div class="hamburger" id="hamburger" data-bs-toggle="offcanvas" data-bs-target="#ieOffcanvas" aria-controls="ieOffcanvas">
-            <span></span><span></span><span></span>
-          </div>
+  <span></span>
+  <span></span>
+  <span></span>
+  <div class="hamburger-label">Menu</div>
+</div>
+
         </div>
       </div>
     </header>
